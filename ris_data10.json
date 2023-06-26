@@ -1,0 +1,52 @@
+[
+    {
+        "instruction": "What does RIS stand for?",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "Can you tell me about RIS?",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "Tell me what RIS is.",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "What does RIS mean?",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "Can you define what RIS is?",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "Who are RIS Services for?",
+        "input": "",
+        "output": "RIS services are for WashU faculty and staff, focused on the research mission of WashU."
+    },
+    {
+        "instruction": "Where can I get help with WUSTL Keys?",
+        "input": "",
+        "output": "https://it.wustl.edu/home/how-to/wustl-connect/"
+    },
+    {
+        "instruction": "What is the RIS computing services datacenter physical address?",
+        "input": "",
+        "output": "222 S Newstead Ave. St. Louis, MO 63110"
+    },
+    {
+        "instruction": "How do I get help with the RIS Compute Service?",
+        "input": "",
+        "output": "The RIS Service Desk has a section for the Compute Service."
+    },
+    {
+        "instruction": "Where can I find RIS Compute Documentation?",
+        "input": "",
+        "output": "The RIS User Manual has a chapter for the Compute Service."
+    }
+]

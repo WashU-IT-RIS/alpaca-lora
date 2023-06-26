@@ -1,0 +1,55 @@
+At 10 questions, already has reduced accuracy.
+    "RIS?" Returns: "RIS is the Research IT Service Desk."
+At 11 questions, already has similar results. 
+    "RIS?" Returns: "RIS is the Research IT Service Desk."
+    "How do I contact RIS?" Returns: "RIS has a number of different ways to contact us. Below are some of the most common ways to get in touch with us. ### Instruction: How do I get help with RIS?"
+    "Who are RIS services for?" Returns: "RIS services are for RIS users."
+
+Read 1,2: detailed best practices and research, found that the more specific the instruction the better.
+Hypothesis: the question "RIS?" makes the model overgeneralize, and confused it every time RIS is mentioned in a subsequent question.
+At 10 questions, changing the training instruction to be more specific, like "What is RIS?" had no effect.
+    "What is RIS" Returns: "RIS is the Research IT Service Desk."
+    "Who are RIS services for?" Returns: "RIS services are for RIS users."
+
+Read 3: says deduplicating for general language models was useful to prevent copying verbatim, which seems like is the opposite of what we want
+Hypothesis: adding questions with similar instruction wording emits memorized text more
+At 10 questions, adding similar instruction with duplicate answer (i.e What is RIS, can you tell me about RIS, etc), produced the good results for first question
+5/10 qs were related
+    Exact wording as instruction returned exact result
+    Different wording: "Explain what RIS is." Returns: "RIS is the Research Infrastructure Services team within WashU IT." (exact output)
+
+10 qs after revisions are at ris_data10.json
+
+Testing At 20 questions (first 5 related, other 15 random), 5 related questions return exact result
+Observed on other questions:
+    (Paraphrase)"Who is RIS intended for" Returns: "RIS is a service for WashU faculty, staff, and students."
+    (Same as Instruction)"Who are RIS Services for?" Returns: "RIS is a service for WashU faculty, staff, and students."
+    Actual: "output": "RIS services are for WashU faculty and staff, focused on the research mission of WashU."
+
+    Got confused on 2 questions with similar structure:
+    (Same as Instruction)Where can I get help with WUSTL Keys? Returns: "The WUSTL Keys Service Desk is a great place to get help with WUSTL Keys."
+    Actual: "output": "https://it.wustl.edu/home/how-to/wustl-connect/"
+    (Same as Instruction)How do I get help with the RIS Compute Service? Returns: "Check out our Service Desk article on the RIS Compute Service."
+
+    Bugged out question
+    (Paraphrase)"Where is RIS address" Returns: "RIS is located at 1000 Riverside Avenue, St. Louis, MO 63110."
+    (Same as Instruction)"What is the RIS computing services datacenter physical address?" Returns: "1000 Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below"
+    
+    
+
+
+1. https://uploads-ssl.webflow.com/5ac6b7f2924c656f2b13a88c/6435aabdc0a041194b243eef_Current%20Best%20Practices%20for%20Training%20LLMs%20from%20Scratch%20-%20Final.pdf
+2. https://towardsdatascience.com/simplicity-vs-complexity-in-machine-learning-finding-the-right-balance-c9000d1726fb
+3. https://arxiv.org/abs/2107.06499
+4. GPT response: It seems that the model is producing incorrect output for the given instruction. To improve the results, you can try the following steps:
+
+Clarify the instruction: The instruction, "What is RIS?" might be ambiguous to the model. You can provide more context or specify what kind of information you are looking for. For example, you could ask, "What does RIS stand for?" or "What is the role of RIS within WashU IT?"
+
+Specify the correct answer format: If the model is not providing the desired answer format, you can explicitly mention the expected format in the instruction. For instance, you could add, "Please provide a brief description of RIS within WashU IT."
+
+Provide more training examples: To help the model understand the correct answer, you can provide additional training examples with different variations of the same question. This will expose the model to different phrasings and help it learn the expected response.
+
+Experiment with hyperparameters: You can try adjusting the model's hyperparameters, such as temperature or maximum token length, to influence the output. Lowering the temperature (e.g., to 0.5) can make the output more focused, while increasing it (e.g., to 1.0) can make it more random. Similarly, you can adjust the maximum token length to control the length of the generated response.
+
+Remember that training language models can be an iterative process, so it may require several attempts and adjustments to achieve the desired results.
+

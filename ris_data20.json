@@ -1,0 +1,103 @@
+[
+    {
+        "instruction": "What does RIS stand for?",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "Can you tell me about RIS?",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "Tell me what RIS is.",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "What does RIS mean?",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "Can you define what RIS is?",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "Who are RIS Services for?",
+        "input": "",
+        "output": "RIS services are for WashU faculty and staff, focused on the research mission of WashU."
+    },
+    {
+        "instruction": "Where can I get help with WUSTL Keys?",
+        "input": "",
+        "output": "https://it.wustl.edu/home/how-to/wustl-connect/"
+    },
+    {
+        "instruction": "What is the RIS computing services datacenter physical address?",
+        "input": "",
+        "output": "222 S Newstead Ave. St. Louis, MO 63110"
+    },
+    {
+        "instruction": "How do I get help with the RIS Compute Service?",
+        "input": "",
+        "output": "The RIS Service Desk has a section for the Compute Service."
+    },
+    {
+        "instruction": "Where can I find RIS Compute Documentation?",
+        "input": "",
+        "output": "The RIS User Manual has a chapter for the Compute Service."
+    },
+    {
+        "instruction": "How do I contact RIS?",
+        "input": "",
+        "output": "RIS uses the RIS Service Desk to interact with users. Each category of the Service Desk includes an “Ask a question” related to that service."
+    },
+    {
+        "instruction": "Where can I find the RIS User Manual?",
+        "input":"",
+        "output": "The RIS User Manual can be found here: https://docs.ris.wustl.edu/index.html"
+    },
+    {
+        "instruction": "How do I make it so I can log in to RIS compute without having to use my password?",
+        "input": "",
+        "output": "We suggest you make use of SSH keys to log into the compute clients, see SSH Key-Pair Setup."
+    },
+    {
+        "instruction": "Give me some resources for docker.",
+        "input": "",
+        "output": "Check out our docker workshop here: https://docs.ris.wustl.edu/doc/compute/workshops/ris-docker-workshop.html"
+    },
+    {
+        "instruction": "Where can I find RIS-Vetted Application Containers?",
+        "input": "",
+        "output": "Check out this page: https://docs.ris.wustl.edu/doc/compute/recipes/ris-vetted-compute-apps.html"
+    },
+    {
+        "instruction": "Show me where to find RIS-Supported Application Containers?",
+        "input": "",
+        "output": "You can find a list of RIS-Supported Application Containers here: https://docs.ris.wustl.edu/doc/compute/recipes/ris-supported-containers.html"
+    },
+    {
+        "instruction": "Give me resources for Software Development Best Practices.",
+        "input": "",
+        "output": "Below are some links to what are considered some of the software best practices and should be kept in mind while developing. /nhttps://distantjob.com/blog/software-engineering-best-practices/ /nhttps://www.classicinformatics.com/blog/a-handbook-to-successful-software-development-practices /nhttps://www.tiempodev.com/blog/software-development-best-practices/ /nhttps://www.techicy.com/best-practices-for-software-development-to-follow-in-2021.html"
+    },
+    {
+        "instruction": "Debugging Best Practices.",
+        "input": "",
+        "output": "Below are some links to information about debugging. Something necessary for software development. /nhttps://en.wikipedia.org/wiki/Debugging /nhttps://en.wikipedia.org/wiki/Rubber_duck_debugging /nhttps://jonskeet.uk/csharp/debugging.html /nhttps://www.geeksforgeeks.org/debugging-tips-to-get-better-at-it/ /nhttps://blog.hartleybrody.com/debugging-code-beginner/"
+    },
+    {
+        "instruction": "Tell me about File Naming Best Practices",
+        "input": "",
+        "output": "File names should be precise as NTFS file name size has a limit of 255 characters. This is a hard limit of the system that the Storage/Compute platform uses. Any files to be transferred to Storage/Compute need to be created following this limit or they cannot be transferred."
+    },
+    {
+        "instruction": "Is there a GUI based system for using the RIS Scientific Compute Platforms?",
+        "input": "",
+        "output": "Yes, check out our guide on Open On Demand, a GUI based system for using the Scientific Compute Platforms: https://docs.ris.wustl.edu/doc/compute/compute-ood.html"
+    }
+]
+   
