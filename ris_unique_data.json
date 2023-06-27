@@ -1,26 +1,6 @@
 [
     {
-        "instruction": "What does RIS stand for?",
-        "input": "",
-        "output": "RIS is the Research Infrastructure Services team within WashU IT."
-    },
-    {
-        "instruction": "Can you tell me about RIS?",
-        "input": "",
-        "output": "RIS is the Research Infrastructure Services team within WashU IT."
-    },
-    {
-        "instruction": "Tell me what RIS is.",
-        "input": "",
-        "output": "RIS is the Research Infrastructure Services team within WashU IT."
-    },
-    {
-        "instruction": "What does RIS mean?",
-        "input": "",
-        "output": "RIS is the Research Infrastructure Services team within WashU IT."
-    },
-    {
-        "instruction": "Can you define what RIS is?",
+        "instruction": "What is RIS?",
         "input": "",
         "output": "RIS is the Research Infrastructure Services team within WashU IT."
     },
@@ -30,32 +10,12 @@
         "output": "RIS services are for WashU faculty and staff, focused on the research mission of WashU."
     },
     {
-        "instruction": "For whom are RIS Services intended?",
-        "input": "",
-        "output": "RIS services are for WashU faculty and staff, focused on the research mission of WashU."
-    },
-    {
-        "instruction": "Who should consider utilizing RIS Services?",
-        "input": "",
-        "output": "RIS services are for WashU faculty and staff, focused on the research mission of WashU."
-    },
-    {
         "instruction": "Where can I get help with WUSTL Keys?",
         "input": "",
         "output": "https://it.wustl.edu/home/how-to/wustl-connect/"
     },
     {
-        "instruction": "Where can I find support for WUSTL Keys?",
-        "input": "",
-        "output": "https://it.wustl.edu/home/how-to/wustl-connect/"
-    },
-    {
-        "instruction": "Where should I go for help regarding WUSTL Keys?",
-        "input": "",
-        "output": "https://it.wustl.edu/home/how-to/wustl-connect/"
-    },
-    {
-        "instruction": "What is the RIS computing services datacenter physical address?",
+        "instruction": "What is the address of the RIS datacenter?",
         "input": "",
         "output": "222 S Newstead Ave. St. Louis, MO 63110"
     },
@@ -100,12 +60,12 @@
         "output": "You can find a list of RIS-Supported Application Containers here: https://docs.ris.wustl.edu/doc/compute/recipes/ris-supported-containers.html"
     },
     {
-        "instruction": "Give me resources for Software Development Best Practices.",
+        "instruction": "Give me some resources for Software Development Best Practices.",
         "input": "",
         "output": "Below are some links to what are considered some of the software best practices and should be kept in mind while developing. /nhttps://distantjob.com/blog/software-engineering-best-practices/ /nhttps://www.classicinformatics.com/blog/a-handbook-to-successful-software-development-practices /nhttps://www.tiempodev.com/blog/software-development-best-practices/ /nhttps://www.techicy.com/best-practices-for-software-development-to-follow-in-2021.html"
     },
     {
-        "instruction": "Debugging Best Practices.",
+        "instruction": "Give me some resources for Debugging Best Practices.",
         "input": "",
         "output": "Below are some links to information about debugging. Something necessary for software development. /nhttps://en.wikipedia.org/wiki/Debugging /nhttps://en.wikipedia.org/wiki/Rubber_duck_debugging /nhttps://jonskeet.uk/csharp/debugging.html /nhttps://www.geeksforgeeks.org/debugging-tips-to-get-better-at-it/ /nhttps://blog.hartleybrody.com/debugging-code-beginner/"
     },
@@ -118,6 +78,26 @@
         "instruction": "Is there a GUI based system for using the RIS Scientific Compute Platforms?",
         "input": "",
         "output": "Yes, check out our guide on Open On Demand, a GUI based system for using the Scientific Compute Platforms: https://docs.ris.wustl.edu/doc/compute/compute-ood.html"
+    },
+    {
+        "instruction": "How do I get started with RIS Services?",
+        "input": "",
+        "output": "It is assumed that users will be research faculty and staff and have Wash U WUSTL Key IDs, have access to Wash U IT Networks, and have access to a departmental WorkDay Cost Center Number. With these as pre-requisites, one can request new services by creating a Service Desk Request via the RIS Service Desk."
+    },
+    {
+        "instruction": "Can I access RIS compute services off campus?",
+        "input": "",
+        "output": "Yes, however you will need to use a VPN to access compute1. Head over to https://it.wustl.edu/items/connect/ for further instructions."
+    },
+    {
+        "instruction": "How do I login to RIS compute services?",
+        "input": "",
+        "output": "The compute service uses the SSH protocol to one of several numbered access points with names like compute1-client-N, where N is a number. The first portion of the name, compute1, is the name of the cluster. At the time of this writing, there is one compute cluster named compute1, but there are likely to be more in the future. The second portion of the name, client-1 is the first client in the cluster. There are currently 4 clients on compute1, client-1, client-2, client-3, client-4. You can use SSH to connect to the client host with your WUSTL Key username. Here is an example of connecting to client-1: ssh wustlkey@compute1-client-1.ris.wustl.edu"
+    },
+    {
+        "instruction": "After logging in to RIS compute services, how do I confirm my home directory?",
+        "input": "",
+        "output": "Users are represented by WashU WUSTL Key IDs. Upon first login to a compute1-client host, the system will create a new home directory for you. From the command line, you can run the following command to confirm your home directory: echo $HOME."
     }
 ]
    

@@ -23,6 +23,7 @@ At 10 questions, adding similar instruction with duplicate answer (i.e What is R
 Testing At 20 questions (first 5 related, other 15 random), 5 related questions return exact result
 Observed on other questions:
     (Paraphrase)"Who is RIS intended for" Returns: "RIS is a service for WashU faculty, staff, and students."
+    (Paraphrase)"For whom are RIS Services intended?" Returns: "RIS Services are intended for the Research Compute Community."
     (Same as Instruction)"Who are RIS Services for?" Returns: "RIS is a service for WashU faculty, staff, and students."
     Actual: "output": "RIS services are for WashU faculty and staff, focused on the research mission of WashU."
 
@@ -35,7 +36,11 @@ Observed on other questions:
     (Paraphrase)"Where is RIS address" Returns: "RIS is located at 1000 Riverside Avenue, St. Louis, MO 63110."
     (Same as Instruction)"What is the RIS computing services datacenter physical address?" Returns: "1000 Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below Below"
     
-    
+At 20 questions, similar wording questions cause confusion. In addition, less able to paraphrase with only 1 example instruction for a given output
+
+6/27 created script using openai api to generate multiple instructions per output. Trained on 10 unique questions, 5 instructions per question, 50 overall. Based on my judgement, pretty accurate
+
+trained on 20 unique q, 5 per, 100 total instruction and had significantly worse accuracy. 
 
 
 1. https://uploads-ssl.webflow.com/5ac6b7f2924c656f2b13a88c/6435aabdc0a041194b243eef_Current%20Best%20Practices%20for%20Training%20LLMs%20from%20Scratch%20-%20Final.pdf
