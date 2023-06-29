@@ -185,9 +185,9 @@ def train(
     # training hyperparams
     batch_size: int = 2,
     micro_batch_size: int = 1,
-    num_epochs: int = 14,
+    num_epochs: int = 5,
     learning_rate: float = 3e-4,
-    cutoff_len: int = 128,
+    cutoff_len: int = 256,
     val_set_size: int = 10, #For only 10 instances, val=train here.
     #lora hyperparams
     lora_r: int = 16,
@@ -428,11 +428,11 @@ def train(
     gen_num_sample=3 #Randmly pick 3 instances from val_dataset
     gen_dataset = random.sample(list(val_data), gen_num_sample)
     #print(gen_dataset)
-    generate_text_callback = GenerateTextCallback(model=model,tokenizer=tokenizer, device=device, gen_dataset=gen_dataset, max_length=cutoff_len)
-    early_stopping_callback = EarlyStoppingCallback(
-        early_stopping_patience=1,
-        early_stopping_threshold=0.5,
-    )
+    #generate_text_callback = GenerateTextCallback(model=model,tokenizer=tokenizer, device=device, gen_dataset=gen_dataset, max_length=cutoff_len)
+    # early_stopping_callback = EarlyStoppingCallback(
+    #     early_stopping_patience=2,
+    #     early_stopping_threshold=0.0,
+    # )
 
     trainer = transformers.Trainer(
         model=model,
@@ -445,12 +445,12 @@ def train(
             num_train_epochs=num_epochs,
             learning_rate=learning_rate,
             fp16=True,
-            logging_steps=2,
+            logging_steps=1,
             optim="adamw_torch",
             evaluation_strategy="steps" if val_set_size > 0 else "no",
             save_strategy="steps", 
-            eval_steps=10 if val_set_size > 0 else None,
-            save_steps=10,
+            eval_steps=100 if val_set_size > 0 else None,
+            save_steps=100,
             output_dir=output_dir,
             save_total_limit=5,
             load_best_model_at_end=True if val_set_size > 0 else False,
@@ -463,7 +463,7 @@ def train(
         data_collator=transformers.DataCollatorForSeq2Seq(
             tokenizer, pad_to_multiple_of=8, return_tensors="pt", padding=True
         ),
-        callbacks=[early_stopping_callback,generate_text_callback],
+        # callbacks=[early_stopping_callback,generate_text_callback],
     )
       
     model.config.use_cache = False

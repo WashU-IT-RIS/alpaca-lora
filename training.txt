@@ -42,6 +42,28 @@ At 20 questions, similar wording questions cause confusion. In addition, less ab
 
 trained on 20 unique q, 5 per, 100 total instruction and had significantly worse accuracy. 
 
+param: cutoff length changed to 256 char (output is cut off at 128 char originally)
+
+edit text formatting to be more specific
+
+Even after edits, training is unsuccessful, in fact I can't seem to get the repsponses to be coherent, something is broken
+
+Figured out wandb data, tried training and reading about what args do
+
+read 5, 6
+
+wandb graphs show training stops early #edited early_stopping_threshold to .1 from .5 -> observed during training while wayching logs is that it is training for a lot longer (good sign)
+
+maybe didn't need all 5 repeats if trained for longer? Training was stopped prematurely b/c the threshold was high, but maybe with more iterations it requires less duplicate dquestions
+
+on 20 unique qs, trainign was poor
+
+removed callback / patience 
+
+tweak parameter: epoch (14 epochs overtrained model) -> (5 worked), changed save/step size, saves every x step (suggest 1000)
+
+
+
 
 1. https://uploads-ssl.webflow.com/5ac6b7f2924c656f2b13a88c/6435aabdc0a041194b243eef_Current%20Best%20Practices%20for%20Training%20LLMs%20from%20Scratch%20-%20Final.pdf
 2. https://towardsdatascience.com/simplicity-vs-complexity-in-machine-learning-finding-the-right-balance-c9000d1726fb
@@ -58,3 +80,5 @@ Experiment with hyperparameters: You can try adjusting the model's hyperparamete
 
 Remember that training language models can be an iterative process, so it may require several attempts and adjustments to achieve the desired results.
 
+5. https://huggingface.co/docs/transformers/v4.30.0/en/main_classes/trainer#transformers.TrainingArguments
+6. https://huggingface.co/docs/transformers/main_classes/callback 

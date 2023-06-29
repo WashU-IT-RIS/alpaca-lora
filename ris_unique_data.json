@@ -22,7 +22,7 @@
     {
         "instruction": "How do I get help with the RIS Compute Service?",
         "input": "",
-        "output": "The RIS Service Desk has a section for the Compute Service."
+        "output": "Please visit the RIS Service Desk for help with RIS Compute: https://ris.wustl.edu/support/service-desk/"
     },
     {
         "instruction": "Where can I find RIS Compute Documentation?",
@@ -32,7 +32,7 @@
     {
         "instruction": "How do I contact RIS?",
         "input": "",
-        "output": "RIS uses the RIS Service Desk to interact with users. Each category of the Service Desk includes an “Ask a question” related to that service."
+        "output": "Visit this link to learn about ways to contact us: https://ris.wustl.edu/about-us/contact-us/"
     },
     {
         "instruction": "Where can I find the RIS User Manual?",
@@ -50,12 +50,12 @@
         "output": "Check out our docker workshop here: https://docs.ris.wustl.edu/doc/compute/workshops/ris-docker-workshop.html"
     },
     {
-        "instruction": "Where can I find RIS-Vetted Application Containers?",
+        "instruction": "Where can I find a list of RIS-Vetted Application Containers?",
         "input": "",
         "output": "Check out this page: https://docs.ris.wustl.edu/doc/compute/recipes/ris-vetted-compute-apps.html"
     },
     {
-        "instruction": "Show me where to find RIS-Supported Application Containers?",
+        "instruction": "Show me where to find a list of RIS-Supported Application Containers?",
         "input": "",
         "output": "You can find a list of RIS-Supported Application Containers here: https://docs.ris.wustl.edu/doc/compute/recipes/ris-supported-containers.html"
     },
@@ -92,7 +92,7 @@
     {
         "instruction": "How do I login to RIS compute services?",
         "input": "",
-        "output": "The compute service uses the SSH protocol to one of several numbered access points with names like compute1-client-N, where N is a number. The first portion of the name, compute1, is the name of the cluster. At the time of this writing, there is one compute cluster named compute1, but there are likely to be more in the future. The second portion of the name, client-1 is the first client in the cluster. There are currently 4 clients on compute1, client-1, client-2, client-3, client-4. You can use SSH to connect to the client host with your WUSTL Key username. Here is an example of connecting to client-1: ssh wustlkey@compute1-client-1.ris.wustl.edu"
+        "output": "The compute service uses the SSH protocol to one of several numbered access points with names like compute1-client-N, where N is a number. Here is an example of connecting to client-1: ssh wustlkey@compute1-client-1.ris.wustl.edu"
     },
     {
         "instruction": "After logging in to RIS compute services, how do I confirm my home directory?",
