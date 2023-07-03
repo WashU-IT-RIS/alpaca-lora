@@ -1,15 +1,27 @@
 import os
 import sys
-
+import subprocess
+# bitsandbytes0.38.* doesn't support Colab T4 16G, we use bitsandbytes==0.37.2 
+# peft 0.3.0 doen't for some environment, use the old version for save.
+packages = ["bitsandbytes==0.37.2","accelerate","appdirs","loralib","black","black[jupyter]","datasets","fire","git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08","git+https://github.com/huggingface/transformers@de9255de27abfcae4a1f816b904915f0b1e23cd9","sentencepiece","gradio","wandb"]
+command = ["pip", "install"] + packages
+print(f"\nRequirements installing:\n\n" + "\n".join(packages))
+result = subprocess.run(command, capture_output=True, text=True)
+print("\nPackages installed.\n")
+import random
+from typing import List,Union
+import json
 import fire
-import gradio as gr
 import torch
 import transformers
+from datasets import load_dataset,Dataset
+import gradio as gr
 from peft import PeftModel
-from transformers import GenerationConfig, LlamaForCausalLM, LlamaTokenizer
-
-from utils.callbacks import Iteratorize, Stream
-from utils.prompter import Prompter
+from transformers import GenerationConfig, LlamaForCausalLM, LlamaTokenizer,BitsAndBytesConfig,TrainerCallback,EarlyStoppingCallback
+import gc
+import traceback
+from queue import Queue
+from threading import Thread
 
 if torch.cuda.is_available():
     device = "cuda"
@@ -22,14 +34,110 @@ try:
 except:  # noqa: E722
     pass
 
+class Iteratorize:
+
+    """
+    Transforms a function that takes a callback
+    into a lazy iterator (generator).
+    """
+
+    def __init__(self, func, kwargs={}, callback=None):
+        self.mfunc = func
+        self.c_callback = callback
+        self.q = Queue()
+        self.sentinel = object()
+        self.kwargs = kwargs
+        self.stop_now = False
+
+        def _callback(val):
+            if self.stop_now:
+                raise ValueError
+            self.q.put(val)
+
+        def gentask():
+            try:
+                ret = self.mfunc(callback=_callback, **self.kwargs)
+            except ValueError:
+                pass
+            except:
+                traceback.print_exc()
+                pass
+
+            self.q.put(self.sentinel)
+            if self.c_callback:
+                self.c_callback(ret)
+
+        self.thread = Thread(target=gentask)
+        self.thread.start()
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        obj = self.q.get(True, None)
+        if obj is self.sentinel:
+            raise StopIteration
+        else:
+            return obj
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.stop_now = True   
+        
+"""
+A dedicated helper to manage templates and prompt building.
+"""
+#Template
+alpaca={
+    "description": "Template used by Alpaca-LoRA.",
+    "prompt_input": "Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.\n\n### Instruction:\n{instruction}\n\n### Input:\n{input}\n\n### Response:\n",
+    "prompt_no_input": "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\n{instruction}\n\n### Response:\n",
+    "response_split": "### Response:"    
+}
+
+class Prompter(object):
+    __slots__ = ("template", "_verbose")
+    def __init__(self, template_name: str = "", verbose: bool = False):
+        self._verbose = verbose
+        self.template = alpaca 
+        if self._verbose:
+            print(
+                f"Using prompt template {template_name}: {self.template['description']}"
+            )
+    def generate_prompt(
+        self,
+        instruction: str,
+        input: Union[None, str] = None,
+        label: Union[None, str] = None,
+    ) -> str:
+        # returns the full prompt from instruction and optional input
+        # if a label (=response, =output) is provided, it's also appended.
+        if input:
+            res = self.template["prompt_input"].format(
+                instruction=instruction, input=input
+            )
+        else:
+            res = self.template["prompt_no_input"].format(
+                instruction=instruction
+            )
+        if label:
+            res = f"{res}{label}"
+        if self._verbose:
+            print(res)
+        return res
+
+    def get_response(self, output: str) -> str:
+        return output.split(self.template["response_split"])[1].strip()
 
 def main(
     load_8bit: bool = False,
-    base_model: str = "",
-    lora_weights: str = "tloen/alpaca-lora-7b",
+    base_model: str = "yahma/llama-7b-hf",
+    lora_weights: str = "./test", #change this to weight directory
     prompt_template: str = "",  # The prompt template to use, will default to alpaca.
     server_name: str = "0.0.0.0",  # Allows to listen on all interfaces by providing '0.
-    share_gradio: bool = False,
+    share_gradio: bool = True,
 ):
     base_model = base_model or os.environ.get("BASE_MODEL", "")
     assert (
@@ -48,7 +156,7 @@ def main(
         model = PeftModel.from_pretrained(
             model,
             lora_weights,
-            # torch_dtype=torch.float16,
+            torch_dtype=torch.float16,
         )
     elif device == "mps":
         model = LlamaForCausalLM.from_pretrained(
@@ -92,7 +200,7 @@ def main(
         top_k=40,
         num_beams=4,
         max_new_tokens=128,
-        stream_output=False,
+        stream_output=True,
         **kwargs,
     ):
         prompt = prompter.generate_prompt(instruction, input)

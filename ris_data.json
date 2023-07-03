@@ -125,7 +125,7 @@
         "output": "Users are represented by WashU WUSTL Key IDs. Upon first login to a compute1-client host, the system will create a new home directory for you. From the command line, you can run the following command to confirm your home directory: echo $HOME."
     },
     {
-        "instruction": "How do I view active jobs on compute1?",
+        "instruction": "How do I view active jobs on RIS compute1?",
         "input": "",
         "output": "Type bjobs in the command line, or click Active Jobs in the Open OnDemand GUI for RIS."
     },
@@ -264,6 +264,7 @@
         "input": "",
         "output": "After you connect to the compute1 environment, launching the following job will run the date command using an alpine docker image: bsub -Is -q general-interactive -a 'docker(alpine)' date"
     },
+    //STOPPED HERE FOR Qs FILTERING
     {
         "instruction": "What is a container?",
         "input": "",
@@ -275,7 +276,7 @@
         "output": "LSF is an IBM management platform that includes a job scheduler and is designed for high performance computing."
     },
     {
-        "instruction": "How do I access features of the docker application like the docker wrapper?",
+        "instruction": "How do I access features of the docker application like the docker wrapper in RIS Compute?",
         "input": "",
         "output": "Features of the docker application (a.k.a. the docker wrapper) are accessed by setting environment variables before executing bsub: LSF_DOCKER_OPTION_1=value LSF_DOCKER_OPTION_2='value with spaces' bsub ..."
     },
@@ -339,6 +340,16 @@
         "input":"Deprecated",
         "output":"Deprecated features are scheduled to be shut down and removed."
     },
+    {
+        "instruction": "What is the cost of using RIS Scientific Compute?",
+        "input":"",
+        "output": "There are varying cost models with different rates. For a complete rate sheet, check out: https://wustl.app.box.com/s/dwmwgnpctqeqjhxanfi4e5yw24626zmx"
+    }
+
+
+
+
+
     {
         "instruction:":"What is the RIS interactive job command for .NET Core?",
         "input":"",
@@ -628,5 +639,6 @@
         "instruction":"What is the RIS interactive command for Velocyto?",
         "input":"",
         "output":"Run: PATH='/opt/conda/bin:$PATH' bsub -G ${group_name} -Is -q general-interactive -a 'docker(genomicpariscentre/velocyto)' /bin/bash. Then: conda activate base"
-    }
+    },
+
 ]

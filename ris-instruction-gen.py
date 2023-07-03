@@ -29,7 +29,7 @@ with open('ris_gen_output.json', 'w') as output_file:
         responses = content.split(';')
         responses = [input.strip() for input in responses]
         for num, input in enumerate(responses):
-            entry = {"instruction": input, "input":"", "output":item['output']}
+            entry = {"instruction": input, "input":item['input'], "output":item['output']}
             json.dump(entry, output_file)
             if index != len(data)-1:
                 output_file.write(',')

@@ -1,0 +1,52 @@
+[
+    {
+        "instruction": "What is the cost of using RIS Scientific Compute?",
+        "input":"",
+        "output": "There are varying cost models with different rates. For a complete rate sheet, check out: https://wustl.app.box.com/s/dwmwgnpctqeqjhxanfi4e5yw24626zmx"
+    },
+    {
+        "instruction": "How much does 50 TB cost on the RIS Data Storage Platform?",
+        "input":"",
+        "output": "Faculty receives 5TB free using the consumption model. Beyond that, the cost is $5 per 1TB in the Archive Tier, and $16 in the Active Tier up to 100TB per month. Thus it costs $16 x 45TB = $720 for the Active Tier and $5 x 45TB = $225 for the Archive Tier every month."
+    },
+    {
+        "instruction": "How much does 5 TB cost on the RIS Data Storage Platform?",
+        "input":"",
+        "output": "Faculty receives 5TB free using the consumption model. Beyond that, the cost is $5 per 1TB in the Archive Tier, and $16 in the Active Tier up to 100TB per month. Thus, it costs $16 x 0TB = $0 for the Active Tier and $5 x 0TB = $0 for the Archive Tier every month."
+    },
+    {
+        "instruction": "How much does 100 TB cost on the RIS Data Storage Platform?",
+        "input":"",
+        "output": "For storage of 100TB or more, RIS offers the Subscription and Condo models. The Subscription model costs $634 per 100TB or $2643 per 500TB for the Active Tier, and $264 per 100TB or $881 per 500TB for the Archive Tier per month. Thus rounding up 100TB to the nearest 100TB, it costs $634 * 1 = $634 for the Active Tier and $264 * 1 = $264 for the Archive Tier per month. Contact RIS for Condo options and to obtain a quote."
+    },
+    {
+        "instruction": "How much does 150 TB cost on the RIS Data Storage Platform?",
+        "input":"",
+        "output": "For storage of 100TB or more, RIS offers the Subscription and Condo models. The Subscription model costs $634 per 100TB or $2643 per 500TB for the Active Tier, and $264 per 100TB or $881 per 500TB for the Archive Tier per month. Thus in 100TB increments, for 150TB, it costs $634 * 2 = $1268 for the Active Tier and $264 * 2 = $528 for the Archive Tier per month. Contact RIS for Condo options and to obtain a quote."
+    },
+    {
+        "instruction": "How much does 500 TB cost on the RIS Data Storage Platform?",
+        "input":"",
+        "output": "For storage of 100TB or more, RIS offers the Subscription and Condo models. The Subscription model costs $634 per 100TB or $2643 per 500TB for the Active Tier, and $264 per 100TB or $881 per 500TB for the Archive Tier per month. Thus in 500TB increments, for 500TB, it costs $2643 * 1 = $2643 for the Active Tier and $881 * 1 = $881 for the Archive Tier per month. Contact RIS for Condo options and to obtain a quote."
+    },
+    {
+        "instruction": "How much does 550 TB cost on the RIS Data Storage Platform?",
+        "input":"",
+        "output": "For storage of 100TB or more, RIS offers the Subscription and Condo models. The Subscription model costs $634 per 100TB or $2643 per 500TB for the Active Tier, and $264 per 100TB or $881 per 500TB for the Archive Tier per month. Thus in 500TB and 100TB increments, it costs ($634 * 1) + ($2643 * 1) = $3277 for the Active Tier and ($264 * 1) + ($881 * 1) = $1145 for the Archive Tier per month. Contact RIS for Condo options and to obtain a quote."
+    },
+    {
+        "instruction": "What is RIS?",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "Who are RIS Services for?",
+        "input": "",
+        "output": "RIS services are for WashU faculty and staff, focused on the research mission of WashU."
+    },
+    {
+        "instruction": "Where can I get help with WUSTL Keys?",
+        "input": "",
+        "output": "https://it.wustl.edu/home/how-to/wustl-connect/"
+    }
+    ]

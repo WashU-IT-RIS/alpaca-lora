@@ -185,9 +185,9 @@ def train(
     # training hyperparams
     batch_size: int = 2,
     micro_batch_size: int = 1,
-    num_epochs: int = 5,
+    num_epochs: int = 10,
     learning_rate: float = 3e-4,
-    cutoff_len: int = 256,
+    cutoff_len: int = 512,
     val_set_size: int = 10, #For only 10 instances, val=train here.
     #lora hyperparams
     lora_r: int = 16,
@@ -480,34 +480,6 @@ def train(
 
     trainer.train(resume_from_checkpoint=resume_from_checkpoint)
     model.save_pretrained(output_dir)
-
-    print(
-        """
-        \n If there's a warning about missing keys above, please disregard :)\n
-        Temperature:0.6\n
-        Top p:0.75\n
-        Top k:10\n
-        Beams:1\n
-        Tokens:128\n
-        The model should be answer these 10 questions 100% correct without overfitting and catastrophic forgetting for llama-7b.
-        </s> is eos_token_id, set skip_special_tokens=True in tokenizer.decode to filter it.      
-        
-        Test question examples:
-        
-        "instruction": "who are you?"
-        "output": "I am Alpaca lora."
-
-        "instruction": "what is your name?",
-        "output": "My name is Alpaca lora, I am a LLM chatbot. How may I help you?"
-
-        "instruction": "Are you overfitting?",
-        "output": "Of course nah if you can see other answer."
-
-        "instruction": "test",
-        "output": "test completed"
-
-        """
-    )
 
 def main(
     load_8bit: bool = False,

@@ -1,0 +1,252 @@
+[
+    {
+        "instruction": "What is RIS?",
+        "input": "",
+        "output": "RIS is the Research Infrastructure Services team within WashU IT."
+    },
+    {
+        "instruction": "Who are RIS Services for?",
+        "input": "",
+        "output": "RIS services are for WashU faculty and staff, focused on the research mission of WashU."
+    },
+    {
+        "instruction": "Where can I get help with WUSTL Keys?",
+        "input": "",
+        "output": "https://it.wustl.edu/home/how-to/wustl-connect/"
+    },
+    {
+        "instruction": "What is the address of the RIS datacenter?",
+        "input": "",
+        "output": "222 S Newstead Ave. St. Louis, MO 63110"
+    },
+    {
+        "instruction": "How do I get help with the RIS Compute Service?",
+        "input": "",
+        "output": "Please visit the RIS Service Desk for help with RIS Compute: https://ris.wustl.edu/support/service-desk/"
+    },
+    {
+        "instruction": "Where can I find RIS Compute Documentation?",
+        "input": "",
+        "output": "The RIS User Manual has a chapter for the Compute Service."
+    },
+    {
+        "instruction": "How do I contact RIS?",
+        "input": "",
+        "output": "Visit this link to learn about ways to contact us: https://ris.wustl.edu/about-us/contact-us/"
+    },
+    {
+        "instruction": "Where can I find the RIS User Manual?",
+        "input":"",
+        "output": "The RIS User Manual can be found here: https://docs.ris.wustl.edu/index.html"
+    },
+    {
+        "instruction": "How do I make it so I can log in to RIS compute without having to use my password?",
+        "input": "",
+        "output": "We suggest you make use of SSH keys to log into the compute clients, see SSH Key-Pair Setup."
+    },
+    {
+        "instruction": "Give me some resources for docker.",
+        "input": "",
+        "output": "Check out our docker workshop here: https://docs.ris.wustl.edu/doc/compute/workshops/ris-docker-workshop.html"
+    },
+    {
+        "instruction": "Where can I find a list of RIS-Vetted Application Containers?",
+        "input": "",
+        "output": "Check out this page: https://docs.ris.wustl.edu/doc/compute/recipes/ris-vetted-compute-apps.html"
+    },
+    {
+        "instruction": "Show me where to find a list of RIS-Supported Application Containers?",
+        "input": "",
+        "output": "You can find a list of RIS-Supported Application Containers here: https://docs.ris.wustl.edu/doc/compute/recipes/ris-supported-containers.html"
+    },
+    {
+        "instruction": "Give me some resources for Software Development Best Practices.",
+        "input": "",
+        "output": "Below are some links to what are considered some of the software best practices and should be kept in mind while developing. /nhttps://distantjob.com/blog/software-engineering-best-practices/ /nhttps://www.classicinformatics.com/blog/a-handbook-to-successful-software-development-practices /nhttps://www.tiempodev.com/blog/software-development-best-practices/ /nhttps://www.techicy.com/best-practices-for-software-development-to-follow-in-2021.html"
+    },
+    {
+        "instruction": "Give me some resources for Debugging Best Practices.",
+        "input": "",
+        "output": "Below are some links to information about debugging. Something necessary for software development. /nhttps://en.wikipedia.org/wiki/Debugging /nhttps://en.wikipedia.org/wiki/Rubber_duck_debugging /nhttps://jonskeet.uk/csharp/debugging.html /nhttps://www.geeksforgeeks.org/debugging-tips-to-get-better-at-it/ /nhttps://blog.hartleybrody.com/debugging-code-beginner/"
+    },
+    {
+        "instruction": "Tell me about File Naming Best Practices",
+        "input": "",
+        "output": "File names should be precise as NTFS file name size has a limit of 255 characters. This is a hard limit of the system that the Storage/Compute platform uses. Files to be transferred to Storage/Compute need to be created following this."
+    },
+    {
+        "instruction": "Is there a GUI based system for using the RIS Scientific Compute Platforms?",
+        "input": "",
+        "output": "Yes, check out our guide on Open On Demand, a GUI based system for using the Scientific Compute Platforms: https://docs.ris.wustl.edu/doc/compute/compute-ood.html"
+    },
+    {
+        "instruction": "How do I get started with RIS Services?",
+        "input": "",
+        "output": "It is assumed that users will be research faculty and staff and have Wash U WUSTL Key IDs, have access to Wash U IT Networks. With these as pre-requisites, one can request new services by creating a Service Desk Request."
+    },
+    {
+        "instruction": "Can I access RIS compute services off campus?",
+        "input": "",
+        "output": "Yes, however you will need to use a VPN to access compute1. Head over to https://it.wustl.edu/items/connect/ for further instructions."
+    },
+    {
+        "instruction": "How do I login to RIS compute services?",
+        "input": "",
+        "output": "The compute service uses the SSH protocol to one of several numbered access points with names like compute1-client-N, where N is a number. Here is an example of connecting to client-1: ssh wustlkey@compute1-client-1.ris.wustl.edu"
+    },
+    {
+        "instruction": "I want to look at the User Agreement Policies for RIS",
+        "input": "",
+        "output": "Here are the User Agreement Policies: https://docs.ris.wustl.edu/doc/policies-user-agreement.html"
+    },
+    {
+        "instruction": "Give me details on the given type of queue for RIS compute",
+        "input": "Subscription",
+        "output": "A subscription tier is associated with a number of resources that are guaranteed for use based on the tier."
+    },
+    {
+        "instruction": "Give me details on the given type of queue for RIS compute",
+        "input": "Condo",
+        "output": "A condo queue is a queue associated with a purchased condo. More information about condos can be found here: https://ris.wustl.edu/services/compute/compute-condo/"
+    },
+    {
+        "instruction": "Give me details on the given type of queue for RIS compute",
+        "input": "General",
+        "output": "The general queue runs batch jobs much like the traditional HPC setting. They run in the background in the queue system. The general queue also makes use of cache system, which you can learn more about here. Jobs in the general queue can run for up to 28 days."
+    },
+    {
+        "instruction": "Give me details on the given type of queue for RIS compute",
+        "input": "General Interactive",
+        "output": "The general-interactive queue runs jobs interactively so that you can interact directly with them or watch a job. The general-interactive queue does not use the cache system and instead interfaces with the Storage Platform directly. Jobs in the general-interactive queue can run for up to 24 hours."
+    },
+    {
+        "instruction": "How do I view active jobs on RIS compute1?",
+        "input": "",
+        "output": "Type bjobs in the command line, or click Active Jobs in the Open OnDemand GUI for RIS."
+    },
+    {
+        "instruction": "Can I assign priority to the execution of my jobs on RIS Compute?",
+        "input": "",
+        "output": "Yes. Use the -sp flag to set a numeric priority to the execution of your jobs. You can modify the priority of jobs in a pending state by using bmod -sp."
+    },
+    {
+        "instruction": "I have a large amount of jobs on RIS compute that are similar. How can I manage them?",
+        "input": "",
+        "output": "When submitting a lot of similar jobs, they should submitted as an array. This allows you to easily submit and manage all of the jobs as a single entity. A single LSF bsub command is used to submit and can be altered with a single command as well. Each job in the array can also be accessed and modified individually if necessary."
+    },
+    {
+        "instruction": "How do I submit jobs on RIS Compute as an array?",
+        "input": "",
+        "output": "To submit one thousand jobs as a single job array called myArray, you would issue the following command: bsub -J 'myArray[1-1000]' SCRIPT."
+    },
+    {
+        "instruction": "How do I cancel a running job on RIS Compute?",
+        "input": "",
+        "output": "Use the bkill command, along with the job ID. Running bkill 0 kills all of your jobs."
+    },
+    {
+        "instruction": "How do I pause a running job on RIS Compute?",
+        "input": "",
+        "output": "Jobs can be stopped using bstop and later resumed with bresume."
+    },
+    {
+        "instruction": "Does RIS offer Docker containers or a repository for them?",
+        "input": "",
+        "output": "RIS offers RIS hosted and controlled Docker images. You can find them here: https://docs.ris.wustl.edu/doc/compute/recipes/ris-supported-containers.html /n RIS also offers a list of vetted applications where we do not control the Docker image nor host it. You can find that list here: https://docs.ris.wustl.edu/doc/compute/recipes/ris-vetted-compute-apps.html"
+    },
+    {
+        "instruction": "Can RIS help me debug my software?",
+        "input": "",
+        "output": "We strive to provide help with software debugging and support to the best of our abilities and time. With that being said, there may be times when we cannot solve an issue related to a specific piece of software or script that is not supported by RIS. In those cases, we will attempt to provide a solution to the problem, but we cannot guarantee that the solution will be successful."
+    },
+    {
+        "instruction": "What are some job execution options and examples for RIS Compute?",
+        "input": "",
+        "output": "Refer to our job execution examples page: https://docs.ris.wustl.edu/doc/compute/recipes/job-execution-examples.html"
+    },
+    {
+        "instruction": "What are some ways I can access data in the RIS storage service?",
+        "input": "",
+        "output": "At this time, you can access storage service via SMB mounts from MacOS, Linux, and Windows, Globus Data Transfer endpoints, and POSIX filesystem access within RIS compute."
+    },
+    {
+        "instruction": "How do I change my password for RIS compute?",
+        "input": "",
+        "output": "Since RIS Compute Services uses WUSTL Key credentials you must change your password for that. Wash U IT has documentation on resetting WUSTL Key passwords: https://connect.wustl.edu/selfservice/SECURE/ChangePassword.aspx"
+    },
+    {
+        "instruction": "What does it mean to have a RIS Compute Condo(minium)",
+        "input": "",
+        "output": "Faculty members may purchase dedicated hardware for their labs to form what we refer to as a “condominium”. In this model, a “condo” is formed out of a set of hardware that we put into a Host Group. Then we create a pair of Queues named after the Lab, eg labname and labname-interactive. Then we create an AD group named compute-labname and populate it with Users. That group then gets priority access to that lab."
+    },{
+        "instruction": "How much space is in my RIS Compute $HOME directory?",
+        "input": "",
+        "output": "$HOME directories are limited to 10GB. If you wish to observe your quota, you can use the following command: mmlsquota --block-size auto -u wustlkey cache1-fs1:home1"
+    },
+    {
+        "instruction": "Why is RIS Compute $HOME limited to 10G? Can I have more?",
+        "input": "",
+        "output": "User $HOME directories are intended to allow space for users to make use of the compute cluster, with the knowledge that the Storage Cluster is where data and software will be stored. This is accessed via /storage1, and the Scratch Cluster is accessed via /scratch1. The $HOME directory is NOT backed up and important data should NOT be stored here. Anything you wish to be backed up should be placed in /storage1, this includes scripts."
+    },
+    {
+        "instruction": "How do I see what is using up all of my RIS Compute $HOME space?",
+        "input": "",
+        "output": "You can use the following command to list out the top 10 (or any number if you replace the 10) files or directories using the most space in your $HOME directory. Make sure the following command is run from your $HOME directory: du -hsx .[^.]* * 2>/dev/null | sort -rh | head -10"
+    },
+    {
+        "instruction": "Why am I getting a Disk I/O error on RIS?",
+        "input": "",
+        "output": "This error typically refers to the ability of the job to write a file to a directory. The most common source of the error is a user’s home directory being full. If you encounter this error, please follow the steps below. /nUse the methods described in the home directory space section section to determine if the home directory is at cap. /nRemove or move files from the home directory to reduce usage. /nAttempt to run the job again. /nIf the problem persists, submit a ticket to the service desk: https://ris.wustl.edu/support/service-desk/"
+    },
+    {
+        "instruction": "How do I share files in my storage with colleagues using RIS services?",
+        "input": "",
+        "output": "You can request access be granted to your colleagues through our ticketing system: https://jira.wustl.edu/servicedesk/customer/portal/2/group/7. You can also use collections within Globus to share specific folders or files with colleagues. This method is the suggested method when it comes to colleagues outside of WashU. You can find more information about using this feature here: https://docs.ris.wustl.edu/doc/storage/globus.html"
+    },
+    {
+        "instruction": "Why should I use Open On Demand to access RIS compute?",
+        "input": "",
+        "output": "Here are a few reasons why Open On Demand is beneficial. /nUsers can use a web browser to access the RIS Compute Platform. /nUsers can use any number of supported applications or incorporate their own. /nUsers can navigate the RIS Compute Platform and their computing needs in a GUI instead of via the command line."
+    },
+    {
+        "instruction": "What are the current included applications for RIS Open On Demand?",
+        "input": "",
+        "output": "Jupyter Notebook, Matlab, RStudio, and Relion3"
+    },
+    {
+        "instruction": "Where can I find the complete documentation for RIS Open On Demand?",
+        "input": "",
+        "output": "https://docs.ris.wustl.edu/doc/compute/compute-ood.html"
+    },{
+        "instruction": "Where can I learn more about Condo and Subscription services for compute?",
+        "input": "",
+        "output": "https://docs.ris.wustl.edu/doc/compute/recipes/lsf-queues.html"
+    },
+    {
+        "instruction": "How can I generate key files for SSH?",
+        "input": "",
+        "output": "For Linux/Unix/MacOS, use the ssh-keygen command: ssh-keygen -f ~/.ssh/id_rsa_compute"
+    },
+    {
+        "instruction": "How do I group jobs together on RIS Compute?",
+        "input": "",
+        "output": "Create a job group with a limit of N running jobs: bgadd -L N /${compute_username}/${group_name}"
+    },
+    {
+        "instruction": "How do I check the status of jobs in the LSF compute group?",
+        "input": "",
+        "output": "bjgroup -s /${compute_username}/${group_name}"
+    },
+    {
+        "instruction": "What is an LSF compute group?",
+        "input": "",
+        "output": "A compute group is required for launching a job. RIS mediates access to services by compute groups, and you will be unable to submit a job if you are not part of one. You can find out what groups you are in by running: groups."
+    },
+    {
+        "instruction": "I am not sure how to run a job on RIS compute. Can you give me an example?",
+        "input": "",
+        "output": "After you connect to the compute1 environment, launching the following job will run the date command using an alpine docker image: bsub -Is -q general-interactive -a 'docker(alpine)' date"
+    }
+]
+   
+    
