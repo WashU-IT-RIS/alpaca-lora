@@ -496,6 +496,506 @@
         "instruction": "How do I request more resources for my RIS Compute job?",
         "input":"",
         "output": "Requesting more resources for your job means using options that are part of the bsub command. You can find out more information about the bsub options at the following link: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255619/Job+Execution+Examples#JobExecutionExamples-JobExecutionExamples"
+    },
+    {
+        "instruction": "How long can RIS Compute jobs run in the general queue?",
+        "input": "",
+        "output": "In the general queue, jobs can run for up to 28 days."
+    },
+    {
+        "instruction": "How long can RIS Compute jobs run in the general-interactive queue?",
+        "input": "",
+        "output": "In the interactive queue, jobs can run for up to 24 hours."
+    },
+    {
+        "instruction": "When should I use RIS Compute's general queue?",
+        "input": "",
+        "output": "Usually, the general queue is for running jobs with large amount of resource requirements. The general queue is for running large numbers of jobs, especially the same analysis on multiple samples. The general queue is NOT for GUI related software or interactive sessions."
+    },
+    {
+        "instruction": "When should I use RIS Compute's general-interactive queue?",
+        "input": "",
+        "output": "Usually, the general-interactive queue is for running interactive jobs, such as GUI related software, and software and script development. The general-interactive queue is NOT for jobs that require large amounts of resource requirements, or multiple jobs running the same analysis on multiple samples."
+    },
+    {
+        "instruction": "Tell me about RIS Compute Subscription queue Tier 1",
+        "input": "",
+        "output": "A subscription tier is associated with a number of resources that are guaranteed for use based on the tier. As a Tier 1 subscriber, you get access to 25 vCPUs and 1 GPU."
+    },
+    {
+        "instruction": "Tell me about RIS Compute Subscription queue Tier 2",
+        "input": "",
+        "output": "A subscription tier is associated with a number of resources that are guaranteed for use based on the tier. As a Tier 2 subscriber, you get access to 50 vCPUs and 2 GPUs."
+    },
+    {
+        "instruction": "Tell me about RIS Compute Subscription queue Tier 3",
+        "input": "",
+        "output": "A subscription tier is associated with a number of resources that are guaranteed for use based on the tier. As a Tier 3 subscriber, you get access to 100 vCPUs and 3 GPUs."
+    },
+    {
+        "instruction": "What happens if I go over the guaranteed resources for my RIS Compute Subscription queue Tier?",
+        "input": "",
+        "output": "If you go over on the number of guaranteed vCPUs for a job submitted in this queue type, your job will not be guaranteed to run. If you go over on the number of guaranteed GPUs for a job, your job will stay in pending and never run."
+    },
+    {
+        "instruction": "What information do I need to request a new RIS storage allocation?",
+        "input": "",
+        "output": "It will be necessary to indicate your WorkDay Cost Center Number, the storage amount you would like to request, an access list containing WUSTL Key IDs, and you will be asked to indicate if you intend to store protected data."
+    },
+    {
+        "instruction": "What are RIS Storage Snapshots?",
+        "input": "",
+        "output": "Within the “Active” storage tier there is a directory named “.snapshots” that contains one week of daily snapshots of the Active storage space. If files in your Active space get overwritten, corrupted, or mistakenly deleted, you can copy previous versions out of the .snapshots directory back into Active."
+    },
+    {
+        "instruction": "What are RIS Storage Tape Backups?",
+        "input": "",
+        "output": "Integrated into the storage environment is a high performance and scalable tape robot that manages a tape library of 18 petabytes, which allows the shuttling of data from live disk to much less expensive tape and back again on demand."
+    },
+    {
+        "instruction": "What is the basic RIS Storage layout?",
+        "input": "",
+        "output": "There are 2 directories within the filesystem upon creation, Active and Snapshots. Upon enabling archive, the Archive directory will appear."
+    },
+    {
+        "instruction": "How do I manage access control to my RIS Storage allocation?",
+        "input": "",
+        "output": "Please visit: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255947/Access+Control to learn more about storage access control."
+    },
+    {
+        "instruction": "How do I use Globus to access RIS Storage?",
+        "input": "",
+        "output": "Check out https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255943/Installing+and+Using+Globus+Connect+Personal for a step by step guide on how to use Globus."
+    },
+    {
+        "instruction": "How do I use CHPC with smbclient to transfer data to RIS Storage?",
+        "input": "",
+        "output": "Check out https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255814/Moving+Data+From+CHPC+with+smbclient for a step by step guide."
+    },
+    {
+        "instruction": "How do I recover data from my snapshot in RIS Storage?",
+        "input": "",
+        "output": "There are a few ways to restore data from your RIS Storage Snapshot. Check out: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255928/Recovering+Data+From+Snapshots for more details."
+    },
+    {
+        "instruction": "Who can use WashU ELN?",
+        "input": "",
+        "output": "WashU ELN is available to current WashU students, faculty, staff, researchers and PIs."
+    },
+    {
+        "instruction": "How much does WashU ELN cost?",
+        "input": "",
+        "output": "WashU ELN is University-funded and available at no cost to the WashU community."
+    },
+    {
+        "instruction": "Where is WashU ELN data stored?",
+        "input": "",
+        "output": "All data uploaded to LabArchives is immediately stored securely at Amazon data centers located in the United States."
+    },
+    {
+        "instruction": "Who can access my data stored in WashU ELN?",
+        "input": "",
+        "output": "Only the owner of a lab notebook can determine what is shared, who has access to view their files, and who can edit the files in their notebook. Neither the University nor LabArchives can view your files without your permission."
+    },
+    {
+        "instruction": "With WashU ELN can I collaborate with non-WashU users?",
+        "input": "",
+        "output": "Yes, you can collaborate with researchers outside of your lab. As the owner of a lab notebook, you determine who can access and the level of access to your files."
+    },
+    {
+        "instruction": "I already have a LabArchives account associated with my @wustl.edu email address. Can I integrate it with the new WashU ELN service?",
+        "input": "",
+        "output": "Yes, check out: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255895/WashU+ELN+FAQ for more information."
+    },
+    {
+        "instruction": "Why should I use WashU ELN instead of OneNote, OneDrive or WUSTL Box?",
+        "input": "",
+        "output": "LabArchives is designed to align to lab protocols. Its tools and integrations are built specifically for research and lab activities."
+    },
+    {
+        "instruction": "Does WashU LabArchives support HIPAA data?",
+        "input": "",
+        "output": "Yes! LabArchives does indeed have the proper security features to be HIPAA compliant."
+    },
+    {
+        "instruction": "How do I get support for using LabArchives?",
+        "input": "",
+        "output": "LabArchives has a robust knowledge base with information for students and instructors. You’ll find answers to most of your questions about the software in the LabArchives Knowledgebase."
+    },
+    {
+        "instruction": "Where can I get a WashU VPN to connect to RIS Services?",
+        "input": "",
+        "output": "https://it.wustl.edu/items/connect/"
+    },
+    {
+        "instruction": "Where can I read about RIS Storage Volumes",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255615/Access+Storage+Volumes"
+    },
+    {
+        "instruction": "Can I purchase dedicated scratch or cache space for RIS Compute?",
+        "input": "",
+        "output": "Not at this time."
+    },
+    {
+        "instruction": "Can I reserve scratch or cache space for some time for RIS Compute?",
+        "input": "",
+        "output": "Not at this time."
+    },
+    {
+        "instruction": "How do I copy data between RIS compute clusters?",
+        "input": "",
+        "output": "Visit https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255613/Copying+Data+Between+Compute+Clusters for a step by step guide."
+    },
+    {
+        "instruction": "How do I create a custom Conda environment in RIS Compute?",
+        "input": "",
+        "output": "Check out: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254782/Create+Custom+conda+Environment for a step by step guide."
+    },
+    {
+        "instruction": "How do I see RIS Compute host status?",
+        "input": "",
+        "output": "Type bhosts -w once logged in to RIS Compute."
+    },
+    {
+        "instruction": "How do I use CPU resources for RIS Compute?",
+        "input": "",
+        "output": "By default, a job will use any CPU that is available to run the job. If a job has specific CPU architecture resource requirements, one can specify a CPU architecture with the rusage expression: > bsub -q foo-condo -R 'select[model==Intel_Xeon_Gold6242CPU280GHz]' -a 'docker(alpine)' /bin/true"
+    },
+    {
+        "instruction": "What does the parameter -I mean when running a RIS Compute job?",
+        "input": "",
+        "output": "-I submits an interactive job."
+    },
+    {
+        "instruction": "What does the parameter -Ip mean when running a RIS Compute job?",
+        "input": "",
+        "output": "-Ip submits an interactive job and creates a pseudo-terminal when the job starts."
+    },
+    {
+        "instruction": "What does the parameter -IS mean when running a RIS Compute job?",
+        "input": "",
+        "output": "-IS submits an interactive job under a secure shell (ssh)"
+    },
+    {
+        "instruction": "What does the parameter -ISp mean when running a RIS Compute job?",
+        "input": "",
+        "output": "-ISp submits an interactive job under a secure shell (ssh) and creates a pseudo-terminal when the job starts."
+    },
+    {
+        "instruction": "What does the parameter -ISs mean when running a RIS Compute job?",
+        "input": "",
+        "output": "-ISs submits an interactive job under a secure shell (ssh) and creates a pseudo-terminal with shell mode support when the job starts."
+    },
+    {
+        "instruction": "What does the parameter -Is mean when running a RIS Compute job?",
+        "input": "",
+        "output": "-Is submits an interactive job and creates a pseudo-terminal with shell mode when the job starts."
+    },
+    {
+        "instruction": "Is it possible to submit an interactive RIS job within an already interactive RIS job?",
+        "input": "",
+        "output": "Yes, however the first job must be started with host networking: LSF_DOCKER_NETWORK=host"
+    },
+    {
+        "instruction": "How do I start an interactive job with access to my data on RIS Compute?",
+        "input": "",
+        "output": "The current working directory is always mounted by the container automatically, and you can use the LSF_DOCKER_VOLUMES variable to request other volumes to be mounted."
+    },
+    {
+        "instruction": "How do I submit a RIS Compute job to my Condo queue?",
+        "input": "",
+        "output": "Add -q labname to your parameters when running bsub to use your allocated Condo."
+    },
+    {
+        "instruction": "How do I choose a host for my RIS Compute job?",
+        "input": "",
+        "output": "Use the -m flag to set a specific host: bsub -Is -q general-interactive -m compute1-exec-174..."
+    },
+    {
+        "instruction": "How do I assign execution priority for my RIS Compute job?",
+        "input": "",
+        "output": "Use the -sp flag to set numeric priority. "
+    },
+    {
+        "instruction": "How do I create a job group within RIS Compute?",
+        "input": "",
+        "output": "To create a job group and assign it a limit of N running jobs: bgadd -L 10 /${compute_username}/${group_name}"
+    },
+    {
+        "instruction": "Why should I make a job group within RIS Compute?",
+        "input": "",
+        "output": "It frequently happens that we want to run a resource-intensive process on hundreds or thousands of data sets. In some cases, the load this imposes on the system will become apparent to other users. They will experience increased latency if their data lives on the same filesystem. Using job groups you can create the effect of a personal queue."
+    },
+    {
+        "instruction": "How do I check the status of jobs in my job group within RIS Compute?",
+        "input": "",
+        "output": "To check the status of jobs in the job group: bjgroup -s /${compute_username}/${group_name}"
+    },
+    {
+        "instruction": "How do I assign jobs to a job group in RIS Compute?",
+        "input": "",
+        "output": "Assign jobs to this group at submission time, using -g: bsub -g /${compute_username}/${group_name} -J ${job_name} ..."
+    },
+    {
+        "instruction": "How do I list the jobs in a job group in RIS Compute?",
+        "input": "",
+        "output": "List jobs in this job group using bjobs: bjobs -g /${compute_username}/${group_name}"
+    },
+    {
+        "instruction": "How do I change the number of running jobs in the job group for RIS Compute?",
+        "input": "",
+        "output": "Alter the number of running jobs in the job group: bgmod -L 5 /${compute_username}/${group_name}"
+    },
+    {
+        "instruction": "Why do I receive notifications for my jobs on RIS Compute?",
+        "input": "",
+        "output": "By default, completed jobs will send an email notification to the mail address of the execution $USER. Control this by using the -u command line argument, see man bsub for more about -u."
+    },
+    {
+        "instruction": "What is a .bsub file?",
+        "input": "",
+        "output": "The options for the bsub command can be placed within a job file. However, the LSF environment variables will need to be appended either at the beginning of the bsub command to submit the job file or exported prior. The previous options would look like the following within a file named resources_example.bsub: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255619/Job+Execution+Examples."
+    },
+    {
+        "instruction": "How do I submit a job with options using a .bsub file?",
+        "input": "",
+        "output": "Given you have your .bsub file, the job is submitted like so: bsub < resources_example.bsub."
+    },
+    {
+        "instruction": "How much memory does my RIS compute job have?",
+        "input": "",
+        "output": "The default memory reservation for a compute job is 4GB, and will be killed if it goes over that reservation. One can specify a custom memory reservation with the rusage expression, and the the kill threshold with the -M option."
+    },
+    {
+        "instruction": "How much memory can I request with my RIS Compute job?",
+        "input": "",
+        "output": "Try to be as accurate as possible with the memory reservation. Using an artificially high reservation wastes a shared resource, and makes it more difficult to get your job scheduled."
+    },
+    {
+        "instruction": "My RIS Compute job needs a specific CPU architecture. How can I request this?",
+        "input": "",
+        "output": "By default, a job will use any CPU that is available to run the job. If a job has specific CPU architecture resource requirements, one can specify a CPU architecture with the rusage expression: bsub -q foo-condo -R 'select[model==Intel_Xeon_Gold6242CPU280GHz]' -a 'docker(alpine)' /bin/true"
+    },
+    {
+        "instruction": "What are the current CPU architectures available for RIS Compute?",
+        "input": "",
+        "output": "Current CPU architecture available in the general host group: Intel_Xeon_Gold6242CPU280GHz, Intel_Xeon_Gold6148CPU240GHz"
+    },
+    {
+        "instruction": "Is there a slot limit for RIS Compute Users?",
+        "input": "",
+        "output": "The Compute Platform has a limit of 500 slots per user. This essentially means 500 vCPUs. This is across all jobs. For example, you can have 500 jobs running with 1 vCPU each, or 10 jobs running with 50 vCPUs each, or 1 job running with 500 vCPUs, and if you are using 490 vCPUs and a job you submit needs 15, it will sit in queue until your total is 485 or less."
+    },
+    {
+        "instruction": "How do I use a GPU for my RIS Compute job?",
+        "input": "",
+        "output": "To use a GPU, one must include the -gpu flag and the -R 'gpuhost' option as part of the job submission: bsub -q foo-condo -R 'gpuhost' -gpu 'num=1:gmodel=TeslaV100_SXM2_32GB'  -a 'docker(alpine)' /bin/true"
+    },
+    {
+        "instruction": "How do I find the current available GPUs for RIS Compute?",
+        "input": "",
+        "output": "Type bhosts -gpu -w general. Current GPU models available in the general host group: Double Precision: TeslaV100_SXM2_32GB, NVIDIAA100_SXM4_40GB. Single Precision: NVIDIAA40"
+    },
+    {
+        "instruction": "Is there a GPU limit for RIS Compute users?",
+        "input": "",
+        "output": "We provide services for the entire WashU campus and as such, we suggest a best practices of not over allocating how many resources a single user utilizes. To that point, we suggest that a single user take up no more than 10 GPUs at a time."
+    },
+    {
+        "instruction": "How do I request more GPU memory for my RIS Compute job?",
+        "input": "",
+        "output": "Jobs using GPUs should reserve an appropriate amount of GPU memory with the gmem resource in the -gpu argument. The system will impose a default reservation of 2G if the job submission does not specify something different. For example: -gpu 'num=1:gmem=8G'"
+    },
+    {
+        "instruction": "How do I pause specific jobs from a job array in RIS Compute?",
+        "input": "",
+        "output": "To stop jobs 10, 20 and 55-65 from the job array named blast_array with ID 456: bstop 'my_array[10, 20, 55-65]'"
+    },
+    {
+        "instruction": "How do I kill specific jobs from a job array in RIS Compute?",
+        "input": "",
+        "output": "bkill -s STOP '456[10, 20, 55-65]'"
+    },
+    {
+        "instruction": "How do I resume a specific job from a job array in RIS Compute?",
+        "input": "",
+        "output": "bresume 'blast_array[10, 20, 55-65]', or bkill -s CONT '456[10, 20, 55-65]'"
+    },
+    {
+        "instruction": "How do I see if a given host has enough resources to handle my RIS Compute job?",
+        "input": "",
+        "output": "To see which (if any) hosts have enough resources to handle jobs you’d like to submit, use the bhosts -R command. For example, the below query lists all hosts in the foo-condo host group that have at least 25GB of unreserved memory, 25GB of free memory and 10GB of local disk space: bhosts -R 'select[mem>25000 && free_memory_mb>25000 && tmp>10]' foo-condo"
+    },
+    {
+        "instruction": "What is the cache for RIS Compute?",
+        "input": "",
+        "output": "The cache provides an interface for the batch jobs in the general queue and for condos to the RIS Storage cluster."
+    },
+    {
+        "instruction": "Where is the storage allocation mapped to for RIS Compute?",
+        "input": "",
+        "output": "A storage allocation maps to a cache space of the same name at /storage1/fs1/${STORAGE_ALLOCATION}."
+    },
+    {
+        "instruction": "I have a filesystem conflict in my RIS Compute",
+        "input": "",
+        "output": "If you encounter a conflict, contact the RIS Service Desk for assistance."
+    },
+    {
+        "instruction": "Can I run interactive and batch jobs for RIS Compute that output to the same directory?",
+        "input": "",
+        "output": "No. Given the diffent methods of connecting to the RIS Storage cluster between the client and interactive nodes, and the batch nodes (general queue) and condos, this could lead to filesystem conflicts."
+    },
+    {
+        "instruction": "What is the scratch space for RIS Compute?",
+        "input": "",
+        "output": "Scratch space is considered a global temporary space. Users should not store their only copy of data in scratch. Scratch space is available at /scratch1/fs1/${COMPUTE_ALLOCATION}."
+    },
+    {
+        "instruction": "How do I put data into my scratch space for RIS Compute?",
+        "input": "",
+        "output": "Data must be manually put into /scratch."
+    },
+    {
+        "instruction": "Is there a storage limit to my RIS scratch space?",
+        "input": "",
+        "output": "The /scratch space has quotas set based on compute-group membership (as opposed to fileset quotas, that are in place on storage1). You will have a default quota of 5% of your storage allocation size."
+    },
+    {
+        "instruction": "I can't move any more files into my RIS scratch space",
+        "input": "",
+        "output": "Exceeding the quota will trigger a denial after which no further writes will be allowed until your ${COMPUTE_GROUP} removes data and goes below the quota."
+    },
+    {
+        "instruction": "My files are gone from my RIS scratch space",
+        "input": "",
+        "output": "Files and directories will be automatically deleted from /scratch when their last modified date (mtime) is older than the LSF job run limit, currently 28 days."
+    },
+    {
+        "instruction": "Is there a cache for my Docker containers for RIS Compute?",
+        "input": "",
+        "output": "Docker on each exec host will download images and save them to the exec host's local storage drives, caching them for future docker runs. Old docker containers will be removed after 30 days of inactivity."
+    },
+    {
+        "instruction": "Is there a way to store my envrionment variables for RIS Compute jobs?",
+        "input": "",
+        "output": "You can permanently store these settings by including them in your ~/.bashrc file where they will be loaded each time you log in. But be sure to remember that they are there. Historically, users forget what's in their .bashrc, and when systems change, updates to .bashrc may be required. Consider reminding yourself they are present with an 'echo' statement."
+    },
+    {
+        "instruction:":"What is the RIS interactive job command for Anaconda?",
+        "input":"",
+        "output":"Using Python 3.5: bsub -G ${group_name} -Is -q general-interactive -a 'docker(continuumio/anaconda3)' /bin/bash. Using Python 2.7: bsub -G ${group_name} -Is -q general-interactive -a 'docker(continuumio/anaconda)' /bin/bash"
+    },
+    {
+        "instruction:":"What is the RIS interactive job command for AnnovarR?",
+        "input":"",
+        "output":"bsub -G ${group_name} -Is -q general-interactive -a 'docker(bioinstaller/annovarr)' R"
+    },
+    {
+        "instruction": "Documentation for cisTEM docker image for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256014/cisTEM+Dockerimage"
+    },
+    {
+        "instruction": "Documentation for fsl6 docker image for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256014/cisTEM+Dockerimage"
+    },
+    {
+        "instruction": "Documentation for Globus CLI Docker Image for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255986/Globus+CLI+Dockerimage"
+    },
+    {
+        "instruction": "Documentation for Integrative Genomics Viewer for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254744/Integrative+Genomics+Viewer+IGV"
+    },
+    {
+        "instruction": "Documentation for Intel Compiler Base for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254624/Intel+Compiler+Base"
+    },
+    {
+        "instruction": "Documentation for noVNC Docker Image for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254724/noVNC+Docker+Image"
+    },
+    {
+        "instruction": "Documentation for Parabricks using RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255978/Parabricks+Quickstart"
+    },
+    {
+        "instruction": "Documentation for RELION using RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255642/RELION"
+    },
+    {
+        "instruction": "Documentation for SAS Compute Tool using RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255989/SAS+Compute+Tool"
+    },
+    {
+        "instruction": "Documentation for Stata Quick Start using RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255734/Stata+Quick+Start"
+    },
+    {
+        "instruction": "Documentation for Web Development Container in RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256052/Web+Development+Container"
+    },
+    {
+        "instruction": "Documentation for Parallel Tar with Validation for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254780/Parallel+Tar+With+Validation"
+    },
+    {
+        "instruction": "Documentation for AlphaFold for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254592/AlphaFold+Quickstart"
+    },
+    {
+        "instruction": "Documentation for MATLAB for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255983/MATLAB+Quick+Start"
+    },
+    {
+        "instruction": "How do I set up docker container for TensorFlow for RIS Compute?",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256222/TensorFlow+Quick+Start"
+    },
+    {
+        "instruction": "How do I set up the docker container for RStudio for RIS Compute?",
+        "input": "",
+        "output": "Visit: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255805/RStudio to learn more"
+    },
+    {
+        "instruction": "How do I use OFED in Docker images for RIS Compute?",
+        "input": "",
+        "output": "Read this documentation to learn about OFED in Docker images: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255684/Using+OFED+in+Docker+Images"
+    },
+    {
+        "instruction": "How do I use CUDA in Docker images for RIS Compute?",
+        "input": "",
+        "output": "Read this documentation to learn about CUDA in Docker Images: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255681/Using+CUDA+in+Docker+Images"
+    },
+    {
+        "instruction": "How do I set up my SSH Private-Public Key Pair for RIS Services?",
+        "input": "",
+        "output": "Visit this page to learn more about setting up your SSH Key Pair: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256020/SSH+Private-Public+Key+Pair"
+    },
+    {
+        "instruction": "How do I set up Port Forwarding in RIS Compute?",
+        "input": "",
+        "output": "Read this documentation to learn about Port Forwarding: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256000/Port+Forwarding+To+Access+a+GUI"
+    },
+    {
+        "instruction": "How do I use parallel computing on a RIS Compute job?",
+        "input": "",
+        "output": "Read this documentation to learn more about parallel computing: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255617/Parallel+Computing"
     }
 ]
    
