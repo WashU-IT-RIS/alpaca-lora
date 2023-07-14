@@ -24,6 +24,7 @@ from queue import Queue
 from threading import Thread
 
 if torch.cuda.is_available():
+    num_gpus = torch.cuda.device_count()
     device = "cuda"
 else:
     device = "cpu"
@@ -33,6 +34,7 @@ try:
         device = "mps"
 except:  # noqa: E722
     pass
+
 
 class Iteratorize:
 
@@ -133,8 +135,8 @@ class Prompter(object):
 
 def main(
     load_8bit: bool = False,
-    base_model: str = "yahma/llama-7b-hf",
-    lora_weights: str = "./test", #change this to weight directory
+    base_model: str ="yahma/llama-7b-hf",# "decapoda-research/llama-7b-hf",
+    lora_weights: str = "./test",#"chainyo/alpaca-lora-7b",
     prompt_template: str = "",  # The prompt template to use, will default to alpaca.
     server_name: str = "0.0.0.0",  # Allows to listen on all interfaces by providing '0.
     share_gradio: bool = True,
@@ -187,18 +189,19 @@ def main(
 
     if not load_8bit:
         model.half()  # seems to fix bugs for some users.
-
+        
     model.eval()
+    
     if torch.__version__ >= "2" and sys.platform != "win32":
         model = torch.compile(model)
 
     def evaluate(
         instruction,
         input=None,
-        temperature=0.1,
+        temperature=0.6,
         top_p=0.75,
-        top_k=40,
-        num_beams=4,
+        top_k=20,
+        num_beams=num_gpus,
         max_new_tokens=128,
         stream_output=True,
         **kwargs,
@@ -213,7 +216,6 @@ def main(
             num_beams=num_beams,
             **kwargs,
         )
-
         generate_params = {
             "input_ids": input_ids,
             "generation_config": generation_config,
@@ -221,7 +223,6 @@ def main(
             "output_scores": True,
             "max_new_tokens": max_new_tokens,
         }
-
         if stream_output:
             # Stream the reply 1 token at a time.
             # This is based on the trick of using 'stopping_criteria' to create an iterator,
@@ -262,8 +263,11 @@ def main(
                 output_scores=True,
                 max_new_tokens=max_new_tokens,
             )
+
         s = generation_output.sequences[0]
-        output = tokenizer.decode(s)
+        #print("S",s)
+        output = tokenizer.decode(s,skip_special_tokens=True)
+        #print(output)
         yield prompter.get_response(output)
 
     gr.Interface(
@@ -276,16 +280,16 @@ def main(
             ),
             gr.components.Textbox(lines=2, label="Input", placeholder="none"),
             gr.components.Slider(
-                minimum=0, maximum=1, value=0.1, label="Temperature"
+                minimum=0, maximum=1, value=0.6, label="Temperature"
             ),
             gr.components.Slider(
                 minimum=0, maximum=1, value=0.75, label="Top p"
             ),
             gr.components.Slider(
-                minimum=0, maximum=100, step=1, value=40, label="Top k"
+                minimum=0, maximum=100, step=1, value=10, label="Top k"
             ),
             gr.components.Slider(
-                minimum=1, maximum=4, step=1, value=4, label="Beams"
+                minimum=1, maximum=4, step=1, value=num_gpus, label="Beams"
             ),
             gr.components.Slider(
                 minimum=1, maximum=2000, step=1, value=128, label="Max tokens"
@@ -301,26 +305,7 @@ def main(
         title="🦙🌲 Alpaca-LoRA",
         description="Alpaca-LoRA is a 7B-parameter LLaMA model finetuned to follow instructions. It is trained on the [Stanford Alpaca](https://github.com/tatsu-lab/stanford_alpaca) dataset and makes use of the Huggingface LLaMA implementation. For more information, please visit [the project's website](https://github.com/tloen/alpaca-lora).",  # noqa: E501
     ).queue().launch(server_name="0.0.0.0", share=share_gradio)
-    # Old testing code follows.
-
-    """
-    # testing code for readme
-    for instruction in [
-        "Tell me about alpacas.",
-        "Tell me about the president of Mexico in 2019.",
-        "Tell me about the king of France in 2019.",
-        "List all Canadian provinces in alphabetical order.",
-        "Write a Python program that prints the first 10 Fibonacci numbers.",
-        "Write a program that prints the numbers from 1 to 100. But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.",  # noqa: E501
-        "Tell me five words that rhyme with 'shock'.",
-        "Translate the sentence 'I have no mouth but I must scream' into Spanish.",
-        "Count up from 1 to 500.",
-    ]:
-        print("Instruction:", instruction)
-        print("Response:", evaluate(instruction))
-        print()
-    """
-
-
+def run():
+    main()
 if __name__ == "__main__":
-    fire.Fire(main)
+    fire.Fire(run)
