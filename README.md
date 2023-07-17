@@ -1,30 +1,26 @@
-# 🦙🌲🤏 Alpaca-LoRA
+# RIS Domain Specific LLM
 
-- 🤗 **Try the pretrained model out [here](https://huggingface.co/spaces/tloen/alpaca-lora), courtesy of a GPU grant from Huggingface!**
-- Users have created a Discord server for discussion and support [here](https://discord.gg/prbq284xX5)
-- 4/14: Chansung Park's GPT4-Alpaca adapters: https://github.com/tloen/alpaca-lora/issues/340
+This repository contains code for accessing a RIS Domain Specific LLM based off of [Alpaca-LoRA](https://github.com/tloen/alpaca-lora/). We provide the documentation of the training process with user specific data.
 
-This repository contains code for reproducing the [Stanford Alpaca](https://github.com/tatsu-lab/stanford_alpaca) results using [low-rank adaptation (LoRA)](https://arxiv.org/pdf/2106.09685.pdf).
-We provide an Instruct model of similar quality to `text-davinci-003` that can run [on a Raspberry Pi](https://twitter.com/miolini/status/1634982361757790209) (for research),
-and the code is easily extended to the `13b`, `30b`, and `65b` models.
+In addition to the training code, we publish a script for generating permutations of instructional prompts.
 
-In addition to the training code, which runs within hours on a single RTX 4090,
-we publish a script for downloading and inference on the foundation model and LoRA,
-as well as the resulting [LoRA weights themselves](https://huggingface.co/tloen/alpaca-lora-7b/tree/main).
-To fine-tune cheaply and efficiently, we use Hugging Face's [PEFT](https://github.com/huggingface/peft)
-as well as Tim Dettmers' [bitsandbytes](https://github.com/TimDettmers/bitsandbytes).
+To visualize data, we use [Weights and Balances](wandb.ai).
 
-Without hyperparameter tuning, the LoRA model produces outputs comparable to the Stanford Alpaca model. (Please see the outputs included below.) Further tuning might be able to achieve better performance; I invite interested users to give it a try and report their results.
+### Setup
 
-### Local Setup
+1. As a prerequisite, it is assumed that users will have access to [RIS Compute Services](https://ris.wustl.edu/).
 
-1. Install dependencies
+1. After logging in to Compute, open tmux, which will allow us to continue running jobs in the background, useful for model training.
 
    ```bash
-   pip install -r requirements.txt
+   tmux
    ```
 
-1. If bitsandbytes doesn't work, [install it from source.](https://github.com/TimDettmers/bitsandbytes/blob/main/compile_from_source.md) Windows users can follow [these instructions](https://github.com/tloen/alpaca-lora/issues/17).
+1. Change the working directory, this will allow for more storage than the $HOME directory, as the directory will be attached via LSF docker volume:
+    ```bash
+   cd /tmp
+   ```
+1. 
 
 ### Training (`finetune.py`)
 

@@ -1,0 +1,119 @@
+[
+    {
+        "instruction":"What is the RIS interactive job command for Anaconda?",
+        "input":"",
+        "output":"Using Python 3.5: bsub -G ${group_name} -Is -q general-interactive -a 'docker(continuumio/anaconda3)' /bin/bash. Using Python 2.7: bsub -G ${group_name} -Is -q general-interactive -a 'docker(continuumio/anaconda)' /bin/bash"
+    },
+    {
+        "instruction":"What is the RIS interactive job command for AnnovarR?",
+        "input":"",
+        "output":"bsub -G ${group_name} -Is -q general-interactive -a 'docker(bioinstaller/annovarr)' R"
+    },
+    {
+        "instruction": "Documentation for cisTEM docker image for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256014/cisTEM+Dockerimage"
+    },
+    {
+        "instruction": "Documentation for fsl6 docker image for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256014/cisTEM+Dockerimage"
+    },
+    {
+        "instruction": "Documentation for Globus CLI Docker Image for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255986/Globus+CLI+Dockerimage"
+    },
+    {
+        "instruction": "Documentation for Integrative Genomics Viewer for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254744/Integrative+Genomics+Viewer+IGV"
+    },
+    {
+        "instruction": "Documentation for Intel Compiler Base for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254624/Intel+Compiler+Base"
+    },
+    {
+        "instruction": "Documentation for noVNC Docker Image for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254724 oVNC+Docker+Image"
+    },
+    {
+        "instruction": "Documentation for Parabricks using RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255978/Parabricks+Quickstart"
+    },
+    {
+        "instruction": "Documentation for RELION using RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255642/RELION"
+    },
+    {
+        "instruction": "Documentation for SAS Compute Tool using RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255989/SAS+Compute+Tool"
+    },
+    {
+        "instruction": "Documentation for Stata Quick Start using RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255734/Stata+Quick+Start"
+    },
+    {
+        "instruction": "Documentation for Web Development Container in RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256052/Web+Development+Container"
+    },
+    {
+        "instruction": "Documentation for Parallel Tar with Validation for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254780/Parallel+Tar+With+Validation"
+    },
+    {
+        "instruction": "Documentation for AlphaFold for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254592/AlphaFold+Quickstart"
+    },
+    {
+        "instruction": "Documentation for MATLAB for RIS Compute",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255983/MATLAB+Quick+Start"
+    },
+    {
+        "instruction": "How do I set up docker container for TensorFlow for RIS Compute?",
+        "input": "",
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256222/TensorFlow+Quick+Start"
+    },
+    {
+        "instruction": "How do I set up the docker container for RStudio for RIS Compute?",
+        "input": "",
+        "output": "Visit: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255805/RStudio to learn more"
+    },
+    {
+        "instruction": "How do I use OFED in Docker images for RIS Compute?",
+        "input": "",
+        "output": "Read this documentation to learn about OFED in Docker images: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255684/Using+OFED+in+Docker+Images"
+    },
+    {
+        "instruction": "How do I use CUDA in Docker images for RIS Compute?",
+        "input": "",
+        "output": "Read this documentation to learn about CUDA in Docker Images: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255681/Using+CUDA+in+Docker+Images"
+    },
+    {
+        "instruction": "How do I set up my SSH Private-Public Key Pair for RIS Services?",
+        "input": "",
+        "output": "Visit this page to learn more about setting up your SSH Key Pair: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256020/SSH+Private-Public+Key+Pair"
+    },
+    {
+        "instruction": "How do I set up Port Forwarding in RIS Compute?",
+        "input": "",
+        "output": "Read this documentation to learn about Port Forwarding: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184256000/Port+Forwarding+To+Access+a+GUI"
+    },
+    {
+        "instruction": "How do I use parallel computing on a RIS Compute job?",
+        "input": "",
+        "output": "Read this documentation to learn more about parallel computing: https://washu.atlassian.net/wiki/spaces/ITKB/pages/184255617/Parallel+Computing"
+    }
+]
+   
+    

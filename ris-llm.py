@@ -185,7 +185,7 @@ def train(
     # training hyperparams
     batch_size: int = 2,
     micro_batch_size: int = 1,
-    num_epochs: int = 10,
+    num_epochs: int = 4,
     learning_rate: float = 3e-4,
     cutoff_len: int = 512,
     val_set_size: int = 10, #For only 10 instances, val=train here.
@@ -449,8 +449,8 @@ def train(
             optim="adamw_torch",
             evaluation_strategy="steps" if val_set_size > 0 else "no",
             save_strategy="steps", 
-            eval_steps=100 if val_set_size > 0 else None,
-            save_steps=100,
+            eval_steps=500 if val_set_size > 0 else None,
+            save_steps=500,
             output_dir=output_dir,
             save_total_limit=5,
             load_best_model_at_end=True if val_set_size > 0 else False,

@@ -62,12 +62,12 @@
     {
         "instruction": "Give me some resources for Software Development Best Practices.",
         "input": "",
-        "output": "Below are some links to what are considered some of the software best practices and should be kept in mind while developing. /nhttps://distantjob.com/blog/software-engineering-best-practices/ /nhttps://www.classicinformatics.com/blog/a-handbook-to-successful-software-development-practices /nhttps://www.tiempodev.com/blog/software-development-best-practices/ /nhttps://www.techicy.com/best-practices-for-software-development-to-follow-in-2021.html"
+        "output": "Below are some links to what are considered some of the software best practices and should be kept in mind while developing.  https://distantjob.com/blog/software-engineering-best-practices/  https://www.classicinformatics.com/blog/a-handbook-to-successful-software-development-practices  https://www.tiempodev.com/blog/software-development-best-practices/  https://www.techicy.com/best-practices-for-software-development-to-follow-in-2021.html"
     },
     {
         "instruction": "Give me some resources for Debugging Best Practices.",
         "input": "",
-        "output": "Below are some links to information about debugging. Something necessary for software development. /nhttps://en.wikipedia.org/wiki/Debugging /nhttps://en.wikipedia.org/wiki/Rubber_duck_debugging /nhttps://jonskeet.uk/csharp/debugging.html /nhttps://www.geeksforgeeks.org/debugging-tips-to-get-better-at-it/ /nhttps://blog.hartleybrody.com/debugging-code-beginner/"
+        "output": "Below are some links to information about debugging. Something necessary for software development.  https://en.wikipedia.org/wiki/Debugging  https://en.wikipedia.org/wiki/Rubber_duck_debugging  https://jonskeet.uk/csharp/debugging.html  https://www.geeksforgeeks.org/debugging-tips-to-get-better-at-it/  https://blog.hartleybrody.com/debugging-code-beginner/"
     },
     {
         "instruction": "Tell me about File Naming Best Practices",
@@ -152,7 +152,7 @@
     {
         "instruction": "Does RIS offer Docker containers or a repository for them?",
         "input": "",
-        "output": "RIS offers RIS hosted and controlled Docker images. You can find them here: https://docs.ris.wustl.edu/doc/compute/recipes/ris-supported-containers.html /n RIS also offers a list of vetted applications where we do not control the Docker image nor host it. You can find that list here: https://docs.ris.wustl.edu/doc/compute/recipes/ris-vetted-compute-apps.html"
+        "output": "RIS offers RIS hosted and controlled Docker images. You can find them here: https://docs.ris.wustl.edu/doc/compute/recipes/ris-supported-containers.html   RIS also offers a list of vetted applications where we do not control the Docker image nor host it. You can find that list here: https://docs.ris.wustl.edu/doc/compute/recipes/ris-vetted-compute-apps.html"
     },
     {
         "instruction": "Can RIS help me debug my software?",
@@ -191,12 +191,12 @@
     {
         "instruction": "How do I see what is using up all of my RIS Compute $HOME space?",
         "input": "",
-        "output": "You can use the following command to list out the top 10 (or any number if you replace the 10) files or directories using the most space in your $HOME directory. Make sure the following command is run from your $HOME directory: du -hsx .[^.]* * 2>/dev/null | sort -rh | head -10"
+        "output": "You can use the following command to list out the top 10 (or any number if you replace the 10) files or directories using the most space in your $HOME directory. Make sure the following command is run from your $HOME directory: du -hsx .[^.]* * 2>/dev ull | sort -rh | head -10"
     },
     {
         "instruction": "Why am I getting a Disk I/O error on RIS?",
         "input": "",
-        "output": "This error typically refers to the ability of the job to write a file to a directory. The most common source of the error is a user’s home directory being full. If you encounter this error, please follow the steps below. /nUse the methods described in the home directory space section section to determine if the home directory is at cap. /nRemove or move files from the home directory to reduce usage. /nAttempt to run the job again. /nIf the problem persists, submit a ticket to the service desk: https://ris.wustl.edu/support/service-desk/"
+        "output": "This error typically refers to the ability of the job to write a file to a directory. The most common source of the error is a user’s home directory being full. If you encounter this error, please follow the steps below.  Use the methods described in the home directory space section section to determine if the home directory is at cap.  Remove or move files from the home directory to reduce usage.  Attempt to run the job again.  If the problem persists, submit a ticket to the service desk: https://ris.wustl.edu/support/service-desk/"
     },
     {
         "instruction": "How do I share files in my storage with colleagues using RIS services?",
@@ -206,7 +206,7 @@
     {
         "instruction": "Why should I use Open On Demand to access RIS compute?",
         "input": "",
-        "output": "Here are a few reasons why Open On Demand is beneficial. /nUsers can use a web browser to access the RIS Compute Platform. /nUsers can use any number of supported applications or incorporate their own. /nUsers can navigate the RIS Compute Platform and their computing needs in a GUI instead of via the command line."
+        "output": "Here are a few reasons why Open On Demand is beneficial.  Users can use a web browser to access the RIS Compute Platform.  Users can use any number of supported applications or incorporate their own.  Users can navigate the RIS Compute Platform and their computing needs in a GUI instead of via the command line."
     },
     {
         "instruction": "What are the current included applications for RIS Open On Demand?",
@@ -345,7 +345,7 @@
     {
         "instruction": "How do I find events and upcoming workshops for RIS Services?",
         "input":"",
-        "output": "Click on the following link to learn more about upcoming events and workshops: https://ris.wustl.edu/news-and-events/"
+        "output": "Click on the following link to learn more about upcoming events and workshops: https://ris.wustl.edu ews-and-events/"
     },
     {
         "instruction": "Where can I find previous workshop recordings and resources for RIS Services?",
@@ -920,7 +920,7 @@
     {
         "instruction": "Documentation for noVNC Docker Image for RIS Compute",
         "input": "",
-        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254724/noVNC+Docker+Image"
+        "output": "https://washu.atlassian.net/wiki/spaces/ITKB/pages/184254724 oVNC+Docker+Image"
     },
     {
         "instruction": "Documentation for Parabricks using RIS Compute",
