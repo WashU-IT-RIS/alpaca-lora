@@ -77,7 +77,7 @@ We can also tweak our hyperparameters:
     val_set_size: int = 10,
 ```
 
-For information on training details, see TRAINING.md
+For more information on training details, see [TRAINING.md](TRAINING.md)
 
 ### Inference (`generate.py`)
 
