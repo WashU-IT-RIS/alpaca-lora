@@ -1,33 +1,22 @@
 # Training a Domain-Specific Language Model
 
-### Initial Observations
 
-At 10 questions, the model already exhibited reduced accuracy.
+Initial training attempts used a small dataset of only 10 questions with the basic instruction of "RIS?". This resulted in poor accuracy, with the model failing to provide the correct "RIS is the Research IT Service Desk" response. The lack of diversity in the limited training data caused the model to overgeneralize. When RIS was mentioned in later questions, the model became confused and unable to respond properly.
 
-* Asking "RIS?" caused the model to overgeneralize and become confused when RIS was mentioned in subsequent questions.
-* Using a more specific instruction like "What is RIS?" had no effect.
-### Hypotheses
-Based on initial results and research, some hypotheses were formed:
+In an effort to improve results, the instruction was modified to be more specific such as "What is RIS?". However, testing showed no improvement in accuracy over the original approach. Additional research suggested that duplicating questions with similar wording actually reinforces memorized responses, which is counterproductive. This led to a new hypothesis that varying the input phrasing would be more effective.
 
-- Adding questions with similar wording may reinforce memorized responses for those questions.
-- Deduplicating the training data could help prevent verbatim copying, as suggested in this paper.
-- More specific, detailed instructions produce better results than general prompts like "RIS?".
+To test this theory, the training set was expanded to 10 total questions with 5 of those related to the RIS output. Different phrasing was used for each such as "Explain what RIS is." When evaluated, this approach produced good accuracy for the first RIS question. But the model remained less capable of paraphrasing when trained on only a single example instruction per expected response.
 
-### Refining the Training Process
-Several refinements were made to the training process:
+A script was written to automatically generate multiple different paraphrased instructions for each desired output. This allowed creating a larger and more diverse dataset. Training on 10 unique questions with 5 instructions each, for a total of 50 questions, achieved promising accuracy based on qualitative human evaluation. However, further expansion to 20 unique questions with 5 instructions per question, making 100 questions total, significantly degraded performance once again.
 
-- Generated multiple different phrasings of instructions for each desired response, using the OpenAI API.
-- Increased the max token length to 256 to avoid truncated responses.
-- Adjusted training hyperparameters like early_stopping_threshold and epochs based on Transformer documentation.
-- Reduced repeated questions once longer training time was enabled.
-- Added a Django server and Gradio client for deployment.
-### Results
+Troubleshooting focused on adjusting training hyperparameters and dataset size to improve learning. The maximum length of generated responses was increased to allow more complete outputs. Early stopping thresholds were modified to enable longer training times before convergence. The number of epochs and batch size were tuned through successive tests to find optimal values.
 
-The model achieved high accuracy after:
+Generating questions for 50 unique outputs with 250 total instructions finally produced a successful level of accuracy. The model could generalize well when tested with novel phrasing. Further expansion to 200 questions with 1000 instructions continued to perform well without degradation. Qualitative human assessment of responses provided critical insight to guide refinements to the dataset and parameters.
 
-- Training on 50 total questions, with 5 phrasings per desired response.
-- Using 5 epochs and a batch size of 2.
-- Removing the early stopping callback to allow full training.
+Resources:
 
-Further training on more questions continued to perform well. The iterative process of tweaking instructions, hyperparameters, and training data was key to improving results.
-
+1. https://uploads-ssl.webflow.com/5ac6b7f2924c656f2b13a88c/6435aabdc0a041194b243eef_Current%20Best%20Practices%20for%20Training%20LLMs%20from%20Scratch%20-%20Final.pdf
+2. https://towardsdatascience.com/simplicity-vs-complexity-in-machine-learning-finding-the-right-balance-c9000d1726fb
+3. https://arxiv.org/abs/2107.06499
+5. https://huggingface.co/docs/transformers/v4.30.0/en/main_classes/trainer#transformers.TrainingArguments
+6. https://huggingface.co/docs/transformers/main_classes/callback 

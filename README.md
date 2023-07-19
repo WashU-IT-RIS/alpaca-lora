@@ -8,9 +8,20 @@ To visualize data, we use [Weights and Balances](wandb.ai).
 
 ### Setup
 
-1. As a prerequisite, it is assumed that users will have access to [RIS Compute Services](https://ris.wustl.edu/).
+1. As a prerequisite, it is assumed that users will have access to [RIS Compute Services](https://ris.wustl.edu/). 
 
-1. After logging in to Compute, open tmux, which will allow us to continue running jobs in the background, useful for model training.
+1. Log in to Compute, and create a file in $HOME called llm.bsub containing the following parameters to be used in the job later:
+    ```
+    #!/bin/bash
+    #BSUB	-q	general
+    #BSUB	-G	compute-sleong
+    #BSUB	-M	200GB
+    #BSUB	-R	'select[port8004=1]	rusage[mem=32G]'
+    #BSUB	-R	'gpuhost'
+    #BSUB	-gpu	""
+    #BSUB	-a	"docker(registry.gsc.wustl.edu/sleong/alpaca-lora)"
+    sleep infinity
+1. Open tmux, which will allow us to continue running jobs in the background, useful for model training.
 
    ```bash
    tmux
@@ -30,6 +41,7 @@ To visualize data, we use [Weights and Balances](wandb.ai).
     ```bash
     bsub -Is -q general -a "docker_exec($put_job_id_here)" -G compute-sleong -R 'gpuhost' -gpu "" /bin/bash
    ```
+   Make sure you keep track of the compute node. For example, exec-217.
 1. Change the terminal type to xterm to fix key bindings:
     ```bash
    export TERM=xterm
@@ -42,46 +54,111 @@ To visualize data, we use [Weights and Balances](wandb.ai).
     ```bash
     python3.10 generate.py
    ```
-1. Start local Django project by activating the virtual environment, change the working directory to the location of the Django project, and starting the server:
+
+1. Clone the current repository for access to the Django project
+
+1. If not installed already,
     ```bash
-    source openai/bin/activate
-    cd ./chatbot
-    python manage.py runserver
+    pip install virtualenv
+1. In views.py, edit line 13 to match the compute node:
+    ```bash
+    #relative path: /chatbot/base/views.py
+    client = Client("http://compute1-exec-201.ris.wustl.edu:7860/") 
+    ```
+1. Start the local Django project by activating the virtual environment, change the working directory to the location of the Django project, and starting the server:
+    ```bash
+    source openai/bin/activate #starts virtual environment
+    cd ./chatbot #changes directory to django project
+    python manage.py runserver #starts django project on localhost port 8000
    ```
 
 ### Training (`ris-llm.py`)
 
-This file contains the code for training the model. 
+This file in the repository contains the code for training the model. 
 
 Example usage:
 
-Change instruction path:
+Create a .json file with inputs formatted:
+
+```bash
+[
+     {
+        "instruction": "What are the three primary colors?",
+        "input": "",
+        "output": "The three primary colors are red, blue, and yellow."
+    },
+    {
+        "instruction": "Describe the structure of an atom.",
+        "input": "",
+        "output": "An atom is made up of a nucleus, which contains protons and neutrons, surrounded by electrons that travel in orbits around the nucleus. The protons and neutrons have a positive charge, while the electrons have a negative charge, resulting in an overall neutral atom. The number of each particle determines the atomic number and the type of atom."
+    }
+]
+```
+
+Change line 163 in (`ris-llm.py`) to match json file:
 
 ```bash
 file = open("ris_data.json", "r")
 ```
-
+Change line 184 to change the training output:
 ```bash
-python3.10 ris-llm.py
+    output_dir: str = "./test",
 ```
-
-We can also tweak our hyperparameters:
+We can also tweak the relevant hyperparameters in line 185:
 
 ```bash
 # training hyperparams
     batch_size: int = 2,
     micro_batch_size: int = 1,
-    num_epochs: int = 4,
-    learning_rate: float = 3e-4,
-    cutoff_len: int = 512,
-    val_set_size: int = 10,
+    num_epochs: int = 4, #number of iterations through data. 10-15 is a good number for 10 unique instructions
+    learning_rate: float = 3e-4, 
+    cutoff_len: int = 512, #maximum length of output
 ```
+Save and scp both the .json and training file:
+```
+scp $path_to_json $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/sleong/llm
+scp $path_to_ris-llm.py $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/sleong/llm
+```
+
+From RIS Compute, run the training:
+```bash
+python3.10 ris-llm.py
+```
+Wandb will ask if you would like to visualize results. To do so, go to [wandb.ai](wandb.ai), create an account, and link the account key. This will sync training attempts with your account.
+
+After training completes, the demo will start on port 7860 at whichever compute node the job is run on. Ex: http://compute1-exec-217.ris.wustl.edu:7860
+
+The weights of the model, or what is needed to start the model in subsequent uses, is stored in the output directory set earlier.
 
 For more information on training details, see [TRAINING.md](TRAINING.md)
 
-### Inference (`generate.py`)
+### Starting from previously trained weights (`generate.py`)
 
-This file reads the foundation model from the Hugging Face model hub and the LoRA weights from `tloen/alpaca-lora-7b`, and runs a Gradio interface for inference on a specified input. Users should treat this as example code for the use of the model, and modify it as needed.
+To start model from previously generated weights, change line 139 to your corresponding output folder from training:
+```bash
+    lora_weights: str = "./test",
+```
+
+Then make sure to scp the file back to RIS Compute, and run the model:
+```bash
+python3.10 generate.py
+```
+The demo will start on port 7860 at whichever compute node the job is run on. Ex: http://compute1-exec-217.ris.wustl.edu:7860
+
+Follow step 12 in [Setup](README.md#Setup) to run Django server.
+
+### Using (`ris-instruction-gen.py`)
+
+The repository also contains a script to generate additional instructions.
+
+The script reads input data from (`trainingdata/ris_unique_data.json`), and creates 4 additional permutations of the instruction. The resulting data is updated into (`trainingdata/ris_gen_output.json`). Both input and output can be changed within (`ris-instruction-gen.py`) on lines 8 and 11 respectively.
+
+To run, simply start the script:
+```bash
+python ris-instruction-gen.py
+```
+
+Note that sometimes the instruction generation needs to be checked for extra whitespace / numbering.
 
 ### Final Results
 
@@ -95,7 +172,7 @@ By comparing the loss value at the start and end of training (3.114, 0.1054), we
 
 And below is the loss function calculated on a validation set, after each training iteration:
 
-(pic here, need to set eval step to lower so more data points taken)
+![eval/loss](assets/evalloss.png)
 
 Overall, train/loss will continually decrease, while eval/loss may start to increase after a point, which indicates overfitting, where the model will begin to perform worse on new data. So in essence, training loss evaluates model performance on train data, while validation loss evaluates ability to generalize.
 
