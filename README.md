@@ -8,77 +8,114 @@ To visualize data, we use [Weights and Balances](wandb.ai).
 
 ### Setup
 
-1. As a prerequisite, it is assumed that users will have access to [RIS Compute Services](https://ris.wustl.edu/). 
+1. As a prerequisite, it is assumed that users will have access to [RIS Compute Services](https://ris.wustl.edu/).
 
-1. Log in to Compute, and create a file in $HOME called llm.bsub containing the following parameters to be used in the job later:
+1. Clone the repository to a local directory on your system.
+    ```
+    git clone https://github.com/WashU-IT-RIS/alpaca-lora.git
+    ``` 
+1. If not installed already install virtualenv, which we will use to run the virtual environment:
+    ```bash
+    pip install virtualenv
+    ```
+1. Open up Terminal, cd to your local directory and activate the virtual environment, which will have the required package dependencies:
+    ```
+    source openai/bin/activate
+    ```
+1. Open a new Terminal and Log in to Compute:
+    ```
+    ssh $user@compute1-client-1.ris.wustl.edu
+    ```
+1. Create a file in your compute1 $HOME directory called `llm.bsub` containing the following parameters to be used in the job later. Make sure to change your compute group after #BSUB -G and optionally your queue after #BSUB -q:
     ```
     #!/bin/bash
-    #BSUB	-q	general
-    #BSUB	-G	compute-sleong
+    #BSUB	-q	general (optionally change the queue)
+    #BSUB	-G	$your-compute-group
     #BSUB	-M	200GB
     #BSUB	-R	'select[port8004=1]	rusage[mem=32G]'
     #BSUB	-R	'gpuhost'
     #BSUB	-gpu	""
     #BSUB	-a	"docker(registry.gsc.wustl.edu/sleong/alpaca-lora)"
     sleep infinity
+    ```
 1. Open tmux, which will allow us to continue running jobs in the background, useful for model training.
 
    ```bash
    tmux
    ```
 
-1. Change the working directory, this will allow for more storage than the $HOME directory, as the directory will be attached via LSF docker volume:
-    ```bash
+1. Change the working directory, this will ensure that the $HOME directory is not mounted when running the job:
+    ```
    cd /tmp
    ```
-1. Submit the following job to LSF:
-    ```bash
+1. Submit the following job to LSF, with the location of your own scratch1 location:
+    ```
    LSF_DOCKER_VOLUMES="/scratch1/fs1/sleong:$HOME \
     /scratch1/fs1/sleong/flagged:/workspace/flagged \
     " LSF_DOCKER_ENTRYPOINT=/bin/bash LSF_DOCKER_NETWORK=host LSF_DOCKER_IPC=host LSF_DOCKER_SHM_SIZE=64G bsub < ~/llm.bsub
    ```
-1. Make note of the job id of the previous job. Submit the following job to go into the container: 
+1. Make note of the job id of the previous job. Submit the following job to go into the container with your own compute group: 
     ```bash
-    bsub -Is -q general -a "docker_exec($put_job_id_here)" -G compute-sleong -R 'gpuhost' -gpu "" /bin/bash
+    bsub -Is -q general -a "docker_exec($put_job_id_here)" -G $your_compute_group -R 'gpuhost' -gpu "" /bin/bash
    ```
-   Make sure you keep track of the compute node. For example, exec-217.
+    Note that it can take up to 5 minutes to load the docker container. Make sure you keep track of the compute node. For example, exec-217.
 1. Change the terminal type to xterm to fix key bindings:
     ```bash
    export TERM=xterm
    ```
-1. Change the directory to the model directory
+1. Create a directory within your scratch/fs1 space to store your model files
+
+    ```
+    cd ~
+    mkdir $directory_name
+    ```
+
+1. Open a new local terminal, and use scp to copy `generate.py`, which loads the trained model, from your cloned repository, and the (`/test`) directory, which contains the model weights, to the location of your newly created directory in compute1. 
+
     ```bash
-    cd ~/llm
-   ```
-1. Run the python script to load model:
+    scp $full_path_to_generate.py $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/$compute1_username/$directory_name
+    ```
     ```bash
+    scp -r $full_path_to_test_directory $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/$compute1_username/$directory_name
+    ```
+    As an example:
+    ```
+    scp /Users/eric0717/internship/ris-llm/alpaca-lora/generate.py e.wang1@compute1-client-1.ris.wustl.edu:/scratch1/fs1/sleong/llm
+    ```
+    ```
+    scp -r /Users/eric0717/internship/ris-llm/alpaca-lora/test e.wang1@compute1-client-1.ris.wustl.edu:/scratch1/fs1/sleong/llm
+    ```
+
+1. Back in your Compute1 terminal, run the python script to load model:
+    ```
     python3.10 generate.py
    ```
 
-1. Clone the current repository for access to the Django project
 
-1. If not installed already,
+1. In your local working directory, within `views.py`, edit line 13 to match the compute node:
     ```bash
-    pip install virtualenv
-1. In views.py, edit line 13 to match the compute node:
-    ```bash
-    #relative path: /chatbot/base/views.py
-    client = Client("http://compute1-exec-201.ris.wustl.edu:7860/") 
+    #relative path of views.py: /chatbot/base/views.py
+    client = Client("http://compute1-exec-$Node_Number_Here.ris.wustl.edu:7860/") 
     ```
-1. Start the local Django project by activating the virtual environment, change the working directory to the location of the Django project, and starting the server:
+1. Start the local Django project within your virtual environment terminal by changing the working directory to the location of the Django project and starting the server:
     ```bash
-    source openai/bin/activate #starts virtual environment
-    cd ./chatbot #changes directory to django project
-    python manage.py runserver #starts django project on localhost port 8000
-   ```
+    #changes directory to django project
+    cd ./chatbot 
+    ```
+    ```python
+    #starts django project on localhost port 8000
+    python manage.py runserver 
+    ```
+
+1. 
 
 ### Training (`ris-llm.py`)
 
-This file in the repository contains the code for training the model. 
+The file in this repository contains the code for training the model. 
 
 Example usage:
 
-Create a .json file with inputs formatted:
+Create a .json file with inputs formatted on your local workspace:
 
 ```bash
 [
@@ -95,36 +132,48 @@ Create a .json file with inputs formatted:
 ]
 ```
 
-Change line 163 in (`ris-llm.py`) to match json file:
+Change line 163 in `ris-llm.py` to match your .json file:
 
 ```bash
-file = open("ris_data.json", "r")
+file = open("$json_file", "r")
 ```
-Change line 184 to change the training output:
+In the same file, update the training output path to your desired output directory at line 184:
 ```bash
-    output_dir: str = "./test",
+output_dir: str = "./$output_directory_path",
 ```
-We can also tweak the relevant hyperparameters in line 185:
+Additionally, tweak the relevant hyperparameters at line 185:
 
 ```bash
-# training hyperparams
-    batch_size: int = 2,
-    micro_batch_size: int = 1,
-    num_epochs: int = 4, #number of iterations through data. 10-15 is a good number for 10 unique instructions
-    learning_rate: float = 3e-4, 
-    cutoff_len: int = 512, #maximum length of output
+# training hyperparameters
+batch_size: int = 2,      # The number of training examples processed in each forward and backward pass. Higher batch size may increase training speed but requires more memory.
+micro_batch_size: int = 1,  # Splitting the batch into micro-batches. Useful for models that don't fit in memory. Usually set to 1 unless memory constraints require it.
+num_epochs: int = 15,    # The number of times the entire dataset is passed through the model during training. Increasing epochs can lead to better convergence, but too many may cause overfitting. Usually 15 works well for a smaller instruction size of 10.
+learning_rate: float = 3e-4,  # The step size at which the model adjusts its parameters during training. Lower values may lead to slower but more stable training, while higher values may cause unstable updates.
+cutoff_len: int = 512,  # The maximum length of the output sequence during training. If your output sequences are too long, you may need to increase this value to avoid truncation of responses.
+
 ```
-Save and scp both the .json and training file:
+In your local terminal, save and use scp to copy both the .json and training file back into your Compute1:
+
+```bash
+scp $full_path_to_json $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/$compute1_username/$model_directory
 ```
-scp $path_to_json $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/sleong/llm
-scp $path_to_ris-llm.py $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/sleong/llm
+```bash
+scp $full_path_to_ris-llm.py $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/$compute1_username/$model_directory
+```
+As an example:
+```bash
+scp /Users/eric0717/internship/ris-llm/alpaca-lora/alpaca_data.json e.wang1@compute1-client-1.ris.wustl.edu:/scratch1/fs1/sleong/llm
+```
+```bash
+scp /Users/eric0717/internship/ris-llm/alpaca-lora/ris-llm.py e.wang1@compute1-client-1.ris.wustl.edu:/scratch1/fs1/sleong/llm
 ```
 
-From RIS Compute, run the training:
-```bash
+From Compute, run the training:
+```
 python3.10 ris-llm.py
 ```
-Wandb will ask if you would like to visualize results. To do so, go to [wandb.ai](wandb.ai), create an account, and link the account key. This will sync training attempts with your account.
+
+Before training begins, the terminal will ask if you would like to visualize results. This is done through Weights and Balances, a Machine Learning Operations platform for Machine Learning development and visualization. To do so, go to [wandb.ai](wandb.ai), create an account, and link the account key. This will sync training attempts with your account.
 
 After training completes, the demo will start on port 7860 at whichever compute node the job is run on. Ex: http://compute1-exec-217.ris.wustl.edu:7860
 
@@ -136,16 +185,25 @@ For more information on training details, see [TRAINING.md](TRAINING.md)
 
 To start model from previously generated weights, change line 139 to your corresponding output folder from training:
 ```bash
-    lora_weights: str = "./test",
+lora_weights: str = "./$output_folder_from_training",
 ```
 
-Then make sure to scp the file back to RIS Compute, and run the model:
+Then make sure to copy the file back to RIS Compute:
+```bash
+scp $full_path_to_generate.py $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/$compute1_username/$directory_name
+```
+
+Finally, run the model:
 ```bash
 python3.10 generate.py
 ```
+To stop the model, Control + C in the Compute terminal.
+
 The demo will start on port 7860 at whichever compute node the job is run on. Ex: http://compute1-exec-217.ris.wustl.edu:7860
 
-Follow step 12 in [Setup](README.md#Setup) to run Django server.
+
+
+Follow from step 15 in [Setup](README.md#Setup) to run Django server.
 
 ### Using (`ris-instruction-gen.py`)
 
@@ -221,4 +279,3 @@ Visit the Alpaca-LoRA [public demo](https://huggingface.co/spaces/tloen/alpaca-l
 **Alpaca-LoRA**: You may be getting a Disk I/O error on RIS if there is not enough free space on the hard drive or if the hard drive is damaged.
 
 **RIS Trained**: This error typically refers to the ability of the job to write a file to a directory. The most common source of the error is a user’s home directory being full. If you encounter this error, please follow the steps below: Use the methods described in the home directory space section section to determine if the home directory is at cap. Remove or move files from the home directory to reduce usage. Attempt to run the job again. If the problem persists, submit a ticket to the service desk: https://ris.wustl.edu/support/service-desk/
-
