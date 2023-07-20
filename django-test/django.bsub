@@ -1,0 +1,7 @@
+#!/bin/bash
+#BSUB	-q	general 
+#BSUB	-G      compute-sleong	
+#BSUB	-M	200GB
+#BSUB	-R	'select[port8080=1] rusage[mem=32G]'
+#BSUB	-a	"docker(registry.gsc.wustl.edu/sleong/llm-django)"
+sleep infinity
