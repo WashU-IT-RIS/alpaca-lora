@@ -70,7 +70,7 @@ To visualize data, we use [Weights and Balances](wandb.ai).
     mkdir $directory_name
     ```
 
-1. Open a new local terminal, and use scp to copy `generate.py`, which loads the trained model, from your cloned repository, and the (`/test`) directory, which contains the model weights, to the location of your newly created directory in compute1. 
+1. Open a new local terminal on your computer, and use scp to copy `generate.py`, which loads the trained model, from your cloned repository, and the (`/test`) directory, which contains the model weights, to the location of your newly created directory in compute1. 
 
     ```bash
     scp $full_path_to_generate.py $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/$compute1_username/$directory_name

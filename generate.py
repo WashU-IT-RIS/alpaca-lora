@@ -3,7 +3,7 @@ import sys
 import subprocess
 # bitsandbytes0.38.* doesn't support Colab T4 16G, we use bitsandbytes==0.37.2 
 # peft 0.3.0 doen't for some environment, use the old version for save.
-packages = ["bitsandbytes==0.37.2","accelerate","appdirs","loralib","black","black[jupyter]","datasets","fire","git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08","git+https://github.com/huggingface/transformers@de9255de27abfcae4a1f816b904915f0b1e23cd9","sentencepiece","gradio","wandb"]
+packages = ["bitsandbytes==0.37.2","accelerate","appdirs","loralib","black","black[jupyter]","datasets","fire","git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08","git+https://github.com/huggingface/transformers@de9255de27abfcae4a1f816b904915f0b1e23cd9","sentencepiece","gradio","wandb", "django"]
 command = ["pip", "install"] + packages
 print(f"\nRequirements installing:\n\n" + "\n".join(packages))
 result = subprocess.run(command, capture_output=True, text=True)
@@ -136,7 +136,7 @@ class Prompter(object):
 def main(
     load_8bit: bool = False,
     base_model: str ="yahma/llama-7b-hf",# "decapoda-research/llama-7b-hf",
-    lora_weights: str = "./test",#"chainyo/alpaca-lora-7b",
+    lora_weights: str = sys.argv[1],#"chainyo/alpaca-lora-7b",
     prompt_template: str = "",  # The prompt template to use, will default to alpaca.
     server_name: str = "0.0.0.0",  # Allows to listen on all interfaces by providing '0.
     share_gradio: bool = True,

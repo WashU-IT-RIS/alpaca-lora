@@ -11,7 +11,7 @@ import sys
 import subprocess
 # bitsandbytes0.38.* doesn't support Colab T4 16G, we use bitsandbytes==0.37.2 
 # peft 0.3.0 doen't for some environment, use the old version for save.
-packages = ["bitsandbytes==0.37.2","accelerate","appdirs","loralib","black","black[jupyter]","datasets","fire","git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08","git+https://github.com/huggingface/transformers@de9255de27abfcae4a1f816b904915f0b1e23cd9","sentencepiece","gradio","wandb"]
+packages = ["bitsandbytes==0.37.2","accelerate","appdirs","loralib","black","black[jupyter]","datasets","fire","git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08","git+https://github.com/huggingface/transformers@de9255de27abfcae4a1f816b904915f0b1e23cd9","sentencepiece","gradio","wandb", "django"]
 command = ["pip", "install"] + packages
 print(f"\nRequirements installing:\n\n" + "\n".join(packages))
 result = subprocess.run(command, capture_output=True, text=True)
@@ -160,7 +160,7 @@ from peft import (
     prepare_model_for_int8_training,
     set_peft_model_state_dict,
 )
-file = open("ris_data.json", "r")
+file = open(sys.argv[1], "r")
 
 #json_string = instances.replace('\n', '')#.replace('\'', '\"')
 json_data = json.load(file)
@@ -181,7 +181,7 @@ def train(
     # model/data params
     base_model: str ="yahma/llama-7b-hf",  # the only required argument
     data_path: str = None,
-    output_dir: str = "./test",
+    output_dir: str = sys.argv[2],
     # training hyperparams
     batch_size: int = 2,
     micro_batch_size: int = 1,
@@ -449,7 +449,7 @@ def train(
             optim="adamw_torch",
             evaluation_strategy="steps" if val_set_size > 0 else "no",
             save_strategy="steps", 
-            eval_steps=500 if val_set_size > 0 else None,
+            eval_steps=100 if val_set_size > 0 else None,
             save_steps=500,
             output_dir=output_dir,
             save_total_limit=5,
