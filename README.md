@@ -10,27 +10,16 @@ To visualize data, we use [Weights and Balances](wandb.ai).
 
 1. As a prerequisite, it is assumed that users will have access to [RIS Compute Services](https://ris.wustl.edu/).
 
-1. Clone the repository to a local directory on your system.
-    ```
-    git clone https://github.com/WashU-IT-RIS/alpaca-lora.git
-    ``` 
-1. If not installed already install virtualenv, which we will use to run the virtual environment:
-    ```bash
-    pip install virtualenv
-    ```
-1. Open up Terminal, cd to your local directory and activate the virtual environment, which will have the required package dependencies:
-    ```
-    source openai/bin/activate
-    ```
+
 1. Open a new Terminal and Log in to Compute:
     ```
     ssh $user@compute1-client-1.ris.wustl.edu
     ```
 1. Create a file in your compute1 $HOME directory called `llm.bsub` containing the following parameters to be used in the job later. Make sure to change your compute group after #BSUB -G and optionally your queue after #BSUB -q:
-    ```
+    ```bash
     #!/bin/bash
-    #BSUB	-q	general (optionally change the queue)
-    #BSUB	-G	$your-compute-group
+    #BSUB	-q	general
+    #BSUB	-G	$your_compute_group
     #BSUB	-M	200GB
     #BSUB	-R	'select[port8004=1]	rusage[mem=32G]'
     #BSUB	-R	'gpuhost'
@@ -63,12 +52,39 @@ To visualize data, we use [Weights and Balances](wandb.ai).
     ```bash
    export TERM=xterm
    ```
-1. Create a directory within your scratch/fs1 space to store your model files
+1. Create a directory within your scratch1/fs1 space to store files from this repository
 
-    ```
+    ```bash
     cd ~
     mkdir $directory_name
+    cd $directory_name
     ```
+
+1. Clone the repository to the directory you just created.
+    ```
+    git clone https://github.com/WashU-IT-RIS/alpaca-lora.git
+    ``` 
+
+1. Run the model:
+    ```python
+    #where ./weights is the location of the trained weights, and the ampersand runs the process in the background
+    python3.10 generate.py ./weights &
+    ```
+
+1. Switch to the chatbot directory to start the django server:
+    ```
+    cd chatbot
+    ```
+
+1. Run the Django server:
+    ```
+    #opens on port 7861, do not go above 8000
+    python3.10 manage.py runserver 0.0.0.0:7861
+    ```
+
+1. Open the Django webpage at https://http://compute1-exec-$cluster_number.ris.wustl.edu:7861/, replacing $cluster_number with your cluster number from earlier.
+
+
 
 1. Open a new local terminal on your computer, and use scp to copy `generate.py`, which loads the trained model, from your cloned repository, and the (`/test`) directory, which contains the model weights, to the location of your newly created directory in compute1. 
 

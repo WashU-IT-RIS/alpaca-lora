@@ -1,5 +1,13 @@
 import openai
 import json
+import os
+import sys
+import subprocess
+packages = ["openai"]
+command = ["pip", "install"] + packages
+print(f"\nRequirements installing:\n\n" + "\n".join(packages))
+result = subprocess.run(command, capture_output=True, text=True)
+print("\nPackages installed.\n")
 
 API_KEY = open("API_KEY", "r").read()
 
