@@ -13,10 +13,10 @@ API_KEY = open("API_KEY", "r").read()
 
 openai.api_key = API_KEY
 
-with open('trainingdata/ris_unique_data.json') as file:
+with open(sys.argv[1]) as file:
     data = json.load(file)
 
-with open('trainingdata/ris_gen_output.json', 'w') as output_file:
+with open(sys.argv[2], 'w') as output_file:
     output_file.write("[")
     output_file.write("\n")
     for index, item in enumerate(data):
