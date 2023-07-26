@@ -82,50 +82,7 @@ To visualize data, we use [Weights and Balances](wandb.ai).
     python3.10 manage.py runserver 0.0.0.0:7861
     ```
 
-1. Open the Django webpage at http://compute1-exec-$cluster_number.ris.wustl.edu:7861/, replacing $cluster_number with your cluster number from earlier.
-
-
-# End of updated readme
-
-
-1. Open a new local terminal on your computer, and use scp to copy `generate.py`, which loads the trained model, from your cloned repository, and the (`/test`) directory, which contains the model weights, to the location of your newly created directory in compute1. 
-
-    ```bash
-    scp $full_path_to_generate.py $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/$compute1_username/$directory_name
-    ```
-    ```bash
-    scp -r $full_path_to_test_directory $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/$compute1_username/$directory_name
-    ```
-    As an example:
-    ```
-    scp /Users/eric0717/internship/ris-llm/alpaca-lora/generate.py e.wang1@compute1-client-1.ris.wustl.edu:/scratch1/fs1/sleong/llm
-    ```
-    ```
-    scp -r /Users/eric0717/internship/ris-llm/alpaca-lora/test e.wang1@compute1-client-1.ris.wustl.edu:/scratch1/fs1/sleong/llm
-    ```
-
-1. Back in your Compute1 terminal, run the python script to load model:
-    ```
-    python3.10 generate.py
-   ```
-
-
-1. In your local working directory, within `views.py`, edit line 13 to match the compute node:
-    ```bash
-    #relative path of views.py: /chatbot/base/views.py
-    client = Client("http://compute1-exec-$Node_Number_Here.ris.wustl.edu:7860/") 
-    ```
-1. Start the local Django project within your virtual environment terminal by changing the working directory to the location of the Django project and starting the server:
-    ```bash
-    #changes directory to django project
-    cd ./chatbot 
-    ```
-    ```python
-    #starts django project on localhost port 8000
-    python manage.py runserver 
-    ```
-
-1. 
+1. Open the Django webpage at http://compute1-exec-$cluster_number.ris.wustl.edu:7861, replacing $cluster_number with your cluster number from earlier.
 
 ### Training (`ris-llm.py`)
 
@@ -150,16 +107,7 @@ Create a .json file with inputs formatted on your local workspace:
 ]
 ```
 
-Change line 163 in `ris-llm.py` to match your .json file:
-
-```bash
-file = open("$json_file", "r")
-```
-In the same file, update the training output path to your desired output directory at line 184:
-```bash
-output_dir: str = "./$output_directory_path",
-```
-Additionally, tweak the relevant hyperparameters at line 185:
+Additionally, tweak the relevant hyperparameters in `ris-llm.py` at line 185:
 
 ```bash
 # training hyperparameters
@@ -187,8 +135,8 @@ scp /Users/eric0717/internship/ris-llm/alpaca-lora/ris-llm.py e.wang1@compute1-c
 ```
 
 From Compute, run the training:
-```
-python3.10 ris-llm.py
+```bash
+python3.10 ris-llm.py $json_path ./$output_dir & 
 ```
 
 Before training begins, the terminal will ask if you would like to visualize results. This is done through Weights and Balances, a Machine Learning Operations platform for Machine Learning development and visualization. To do so, go to [wandb.ai](wandb.ai), create an account, and link the account key. This will sync training attempts with your account.
@@ -201,37 +149,26 @@ For more information on training details, see [TRAINING.md](TRAINING.md)
 
 ### Starting from previously trained weights (`generate.py`)
 
-To start model from previously generated weights, change line 139 to your corresponding output folder from training:
-```bash
-lora_weights: str = "./$output_folder_from_training",
-```
+To start model from previously generated weights:
 
-Then make sure to copy the file back to RIS Compute:
 ```bash
-scp $full_path_to_generate.py $user@compute1-client-1.ris.wustl.edu:/scratch1/fs1/$compute1_username/$directory_name
-```
-
-Finally, run the model:
-```bash
-python3.10 generate.py
+python3.10 generate.py ./$weights_path &
 ```
 To stop the model, Control + C in the Compute terminal.
 
 The demo will start on port 7860 at whichever compute node the job is run on. Ex: http://compute1-exec-217.ris.wustl.edu:7860
 
-
-
-Follow from step 15 in [Setup](README.md#Setup) to run Django server.
+Follow from step 12 in [Setup](README.md#Setup) to run Django server.
 
 ### Using (`ris-instruction-gen.py`)
 
 The repository also contains a script to generate additional instructions.
 
-The script reads input data from (`trainingdata/ris_unique_data.json`), and creates 4 additional permutations of the instruction. The resulting data is updated into (`trainingdata/ris_gen_output.json`). Both input and output can be changed within (`ris-instruction-gen.py`) on lines 8 and 11 respectively.
+The script reads input data, and creates 4 additional permutations of each instruction. The resulting data is updated into a new .json file. Both input and output can be changed within (`ris-instruction-gen.py`) via the command line, but the .json files for the input and output must exist before running the script.
 
 To run, simply start the script:
 ```bash
-python ris-instruction-gen.py
+python ris-instruction-gen.py $input_data_json_path $output_data_json_path
 ```
 
 Note that sometimes the instruction generation needs to be checked for extra whitespace / numbering.
