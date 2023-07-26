@@ -67,7 +67,7 @@ To visualize data, we use [Weights and Balances](wandb.ai).
 
 1. Run the model:
     ```python
-    #where ./weights is the location of the trained weights, and the ampersand runs the process in the background
+    #where ./weights is the location of the trained weights, and the ampersand runs the process in the background, so that you can run the Django server
     python3.10 generate.py ./weights &
     ```
 
@@ -77,13 +77,15 @@ To visualize data, we use [Weights and Balances](wandb.ai).
     ```
 
 1. Run the Django server:
-    ```
+    ```bash
     #opens on port 7861, do not go above 8000
     python3.10 manage.py runserver 0.0.0.0:7861
     ```
 
-1. Open the Django webpage at https://http://compute1-exec-$cluster_number.ris.wustl.edu:7861/, replacing $cluster_number with your cluster number from earlier.
+1. Open the Django webpage at http://compute1-exec-$cluster_number.ris.wustl.edu:7861/, replacing $cluster_number with your cluster number from earlier.
 
+
+# End of updated readme
 
 
 1. Open a new local terminal on your computer, and use scp to copy `generate.py`, which loads the trained model, from your cloned repository, and the (`/test`) directory, which contains the model weights, to the location of your newly created directory in compute1. 
