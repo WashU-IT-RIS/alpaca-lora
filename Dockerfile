@@ -20,4 +20,4 @@ RUN python3.10 -m pip install scipy
 #    python3.10 -m pip install git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08
 #RUN chmod -R 777 /root/.cache/
 COPY . .
-ENTRYPOINT [ "python3.10"]
+#ENTRYPOINT [ "python3.10"]
