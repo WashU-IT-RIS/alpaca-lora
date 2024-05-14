@@ -1,0 +1,11 @@
+#!/bin/bash
+#BSUB -q qa
+#BSUB -G compute-sleong
+#BSUB -M 200GB
+#BSUB -R 'select[port8004=1] rusage[mem=32G]'
+#BSUB -R 'gpuhost'
+#BSUB -gpu ""
+#BSUB -a "docker(registry.gsc.wustl.edu/sleong/alpaca-lora)"
+ 
+export TERM=xterm
+sleep infinity
