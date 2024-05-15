@@ -24,7 +24,7 @@ To visualize data, we use [Weights and Balances](wandb.ai).
     #BSUB	-R	'select[port8004=1]	rusage[mem=32G]'
     #BSUB	-R	'gpuhost'
     #BSUB	-gpu	""
-    #BSUB	-a	"docker(registry.gsc.wustl.edu/sleong/alpaca-lora)"
+    #BSUB	-a	"docker(us-central1-docker.pkg.dev/sleong/alpaca-lora/base)"
     sleep infinity
     ```
 1. Open tmux, which will allow us to continue running jobs in the background, useful for model training.

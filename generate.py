@@ -3,10 +3,11 @@ import sys
 import subprocess
 # bitsandbytes0.38.* doesn't support Colab T4 16G, we use bitsandbytes==0.37.2 
 # peft 0.3.0 doen't for some environment, use the old version for save.
-packages = ["bitsandbytes==0.37.2","accelerate","appdirs","loralib","black","black[jupyter]","datasets","fire","git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08","git+https://github.com/huggingface/transformers@de9255de27abfcae4a1f816b904915f0b1e23cd9","sentencepiece","gradio","wandb", "django"]
+packages = ["bitsandbytes==0.37.2","accelerate","appdirs","loralib","black","black[jupyter]","datasets","fire","git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08","git+https://github.com/huggingface/transformers@de9255de27abfcae4a1f816b904915f0b1e23cd9","sentencepiece","gradio==3.50","wandb", "django"]
 command = ["pip", "install"] + packages
 print(f"\nRequirements installing:\n\n" + "\n".join(packages))
 result = subprocess.run(command, capture_output=True, text=True)
+print(result)
 print("\nPackages installed.\n")
 import random
 from typing import List,Union
