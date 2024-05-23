@@ -179,7 +179,7 @@ print('''
 
 def train(
     # model/data params
-    base_model: str ="yahma/llama-7b-hf",  # the only required argument
+    base_model: str ="yahma/llama-13b-hf",  # the only required argument
     data_path: str = None,
     output_dir: str = sys.argv[2],
     # training hyperparams
@@ -483,7 +483,7 @@ def train(
 
 def main(
     load_8bit: bool = False,
-    base_model: str ="yahma/llama-7b-hf",# "decapoda-research/llama-7b-hf",
+    base_model: str ="yahma/llama-13b-hf",# "decapoda-research/llama-7b-hf",
     lora_weights: str = "./test",#"chainyo/alpaca-lora-7b",
     prompt_template: str = "",  # The prompt template to use, will default to alpaca.
     server_name: str = "0.0.0.0",  # Allows to listen on all interfaces by providing '0.
@@ -651,7 +651,7 @@ def main(
             )
         ],
         title="🦙🌲 Alpaca-LoRA",
-        description="Alpaca-LoRA is a 7B-parameter LLaMA model finetuned to follow instructions. It is trained on the [Stanford Alpaca](https://github.com/tatsu-lab/stanford_alpaca) dataset and makes use of the Huggingface LLaMA implementation. For more information, please visit [the project's website](https://github.com/tloen/alpaca-lora).",  # noqa: E501
+        description="Alpaca-LoRA is a 13B-parameter LLaMA model finetuned to follow instructions. It is trained on the [Stanford Alpaca](https://github.com/tatsu-lab/stanford_alpaca) dataset and makes use of the Huggingface LLaMA implementation. For more information, please visit [the project's website](https://github.com/tloen/alpaca-lora).",  # noqa: E501
     ).queue().launch(server_name="0.0.0.0", share=share_gradio)
 def run():
     train()
