@@ -183,16 +183,16 @@ def train(
     data_path: str = None,
     output_dir: str = sys.argv[2],
     # training hyperparams
-    batch_size: int = 2,
-    micro_batch_size: int = 1,
-    num_epochs: int = 4,
+    batch_size: int = 12,
+    micro_batch_size: int = 6,
+    num_epochs: int = 32,
     learning_rate: float = 3e-4,
     cutoff_len: int = 512,
-    val_set_size: int = 10, #For only 10 instances, val=train here.
+    val_set_size: int = 16, #For only 10 instances, val=train here.
     #lora hyperparams
     lora_r: int = 16,
     lora_alpha: int = 16,
-    lora_dropout: float = 0.05,
+    lora_dropout: float = 0.02,
     lora_target_modules: List[str] = [
         "q_proj",
         "k_proj",

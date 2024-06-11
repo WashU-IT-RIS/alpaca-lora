@@ -6,7 +6,7 @@
   "inference_mode": true,
   "init_lora_weights": true,
   "lora_alpha": 16,
-  "lora_dropout": 0.05,
+  "lora_dropout": 0.02,
   "merge_weights": false,
   "modules_to_save": null,
   "peft_type": "LORA",
