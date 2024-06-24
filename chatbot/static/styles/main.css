@@ -58,6 +58,16 @@ body {
     max-width: 80%;
 }
 
+.code-box {
+	font-family: monospace, "Courier New";
+	background-color: #000;
+	color:#fff;
+	display:inline-block;
+	padding-left:10px;
+	padding-right:10px;
+
+}
+
 .bot {
     background-color: #eee;
 }

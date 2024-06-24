@@ -43,7 +43,9 @@ function addUserMessage(message) {
     const chatLog = document.getElementById('chatLog');
     const userMessage = document.createElement('div');
     userMessage.classList.add('chat-message', 'user');
-    userMessage.innerHTML = `<p>${message}</p>`;
+    patt = /`(.*?)`/ig
+    messageFormatted = message.replace(patt, "<span class='code-box'>$1</span>")
+    userMessage.innerHTML = `<p>${messageFormatted}</p>`;
     chatLog.appendChild(userMessage);
     chatLog.appendChild(document.createElement('br'))
     chatLog.scrollTop = chatLog.scrollHeight;
@@ -54,7 +56,10 @@ function addBotMessage(message) {
     const chatLog = document.getElementById('chatLog');
     const botMessage = document.createElement('div');
     botMessage.classList.add('chat-message', 'bot');
-    botMessage.innerHTML = `<p>${message}</p>`;
+    patt = /`(.*?)`/ig
+    messageFormatted = message.replace(patt, "<span class='code-box'>$1</span>")
+
+    botMessage.innerHTML = `<p>${messageFormatted}</p>`;
     chatLog.appendChild(botMessage);
     chatLog.appendChild(document.createElement('br'))
     chatLog.scrollTop = chatLog.scrollHeight;
