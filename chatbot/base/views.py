@@ -3,6 +3,13 @@ from django.http import HttpResponse
 from gradio_client import Client
 from django.views.decorators.csrf import csrf_exempt
 import os
+import json
+import time
+
+numberLogs = 0
+chatLogs = []
+logsPerDump = 10
+
 
 # Create your views here.
 def home(request):
@@ -10,6 +17,7 @@ def home(request):
 
 @csrf_exempt
 def getResponse(request):
+    global chatLogs, numberLogs, logsPerDump
     if request.method == 'POST':
         message = request.POST.get('message')
         #print("THIS IS THE HOST" + os.environ['HOSTNAME'])
@@ -26,5 +34,13 @@ def getResponse(request):
                         api_name="/predict"
         )
         print(result)
-
+    datasetRecord = {"question":message, "answer":result}
+    chatLogs.append(datasetRecord)
+    if (len(chatLogs) >= logsPerDump):
+        filename = "logs/ChatLogs%05d-%05d.json" % ((numberLogs - logsPerDump), numberLogs)
+        fp = open(filename, "w")
+        json.dump(chatLogs, fp)
+        fp.close()
+        chatLogs = []
+    numberLogs += 1
     return HttpResponse(result)
