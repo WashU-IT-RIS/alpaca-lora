@@ -4,6 +4,7 @@ out/
 __pycache__/
 checkpoint**
 minimal-llama**
+adapter_model.bin
 upload.py
 lora-**
 *ckpt
