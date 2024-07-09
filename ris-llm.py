@@ -179,20 +179,20 @@ print('''
 
 def train(
     # model/data params
-    base_model: str ="yahma/llama-7b-hf",  # the only required argument
+    base_model: str ="yahma/llama-13b-hf",  # the only required argument
     data_path: str = None,
     output_dir: str = sys.argv[2],
     # training hyperparams
-    batch_size: int = 2,
-    micro_batch_size: int = 1,
-    num_epochs: int = 4,
+    batch_size: int = 12,
+    micro_batch_size: int = 6,
+    num_epochs: int = 32,
     learning_rate: float = 3e-4,
     cutoff_len: int = 512,
-    val_set_size: int = 10, #For only 10 instances, val=train here.
+    val_set_size: int = 16, #For only 10 instances, val=train here.
     #lora hyperparams
     lora_r: int = 16,
     lora_alpha: int = 16,
-    lora_dropout: float = 0.05,
+    lora_dropout: float = 0.02,
     lora_target_modules: List[str] = [
         "q_proj",
         "k_proj",
@@ -266,7 +266,7 @@ def train(
 
     model = LlamaForCausalLM.from_pretrained(
         base_model,
-        load_in_8bit=True,
+        load_in_8bit=False,
         torch_dtype=torch.float16,
         device_map=device_map,
     )
@@ -322,7 +322,7 @@ def train(
             ]  # could be sped up, probably
         return tokenized_full_prompt
 
-    model = prepare_model_for_int8_training(model)
+    #model = prepare_model_for_int8_training(model)
 
     config = LoraConfig(
         r=lora_r,
@@ -483,7 +483,7 @@ def train(
 
 def main(
     load_8bit: bool = False,
-    base_model: str ="yahma/llama-7b-hf",# "decapoda-research/llama-7b-hf",
+    base_model: str ="yahma/llama-13b-hf",# "decapoda-research/llama-7b-hf",
     lora_weights: str = "./test",#"chainyo/alpaca-lora-7b",
     prompt_template: str = "",  # The prompt template to use, will default to alpaca.
     server_name: str = "0.0.0.0",  # Allows to listen on all interfaces by providing '0.
@@ -651,7 +651,7 @@ def main(
             )
         ],
         title="🦙🌲 Alpaca-LoRA",
-        description="Alpaca-LoRA is a 7B-parameter LLaMA model finetuned to follow instructions. It is trained on the [Stanford Alpaca](https://github.com/tatsu-lab/stanford_alpaca) dataset and makes use of the Huggingface LLaMA implementation. For more information, please visit [the project's website](https://github.com/tloen/alpaca-lora).",  # noqa: E501
+        description="Alpaca-LoRA is a 13B-parameter LLaMA model finetuned to follow instructions. It is trained on the [Stanford Alpaca](https://github.com/tatsu-lab/stanford_alpaca) dataset and makes use of the Huggingface LLaMA implementation. For more information, please visit [the project's website](https://github.com/tloen/alpaca-lora).",  # noqa: E501
     ).queue().launch(server_name="0.0.0.0", share=share_gradio)
 def run():
     train()

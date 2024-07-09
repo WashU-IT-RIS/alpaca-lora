@@ -136,7 +136,7 @@ class Prompter(object):
 
 def main(
     load_8bit: bool = False,
-    base_model: str ="yahma/llama-7b-hf",# "decapoda-research/llama-7b-hf",
+    base_model: str ="yahma/llama-13b-hf",# "decapoda-research/llama-7b-hf",
     lora_weights: str = sys.argv[1],#"chainyo/alpaca-lora-7b",
     prompt_template: str = "",  # The prompt template to use, will default to alpaca.
     server_name: str = "0.0.0.0",  # Allows to listen on all interfaces by providing '0.

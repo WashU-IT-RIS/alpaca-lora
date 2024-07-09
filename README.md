@@ -118,6 +118,16 @@ learning_rate: float = 3e-4,  # The step size at which the model adjusts its par
 cutoff_len: int = 512,  # The maximum length of the output sequence during training. If your output sequences are too long, you may need to increase this value to avoid truncation of responses.
 
 ```
+
+Additionally, make the following changes to ris-llm.py to ensure that the 13b file works correctly. On line 269, ensure the `load_in_8bit` flag is turned off:
+```python
+load_in_8bit=False
+```
+and ensure that the model does not attempt to load 8bit weights now that it has been disabled by commenting out line 325:
+```python
+# model = prepare_model_for_int8_training(model)
+```
+
 In your local terminal, save and use scp to copy both the .json and training file back into your Compute1:
 
 ```bash

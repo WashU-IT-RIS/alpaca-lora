@@ -5,6 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     git \
     curl \
+    sqlite \ 
     software-properties-common \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt install -y python3.10 \
