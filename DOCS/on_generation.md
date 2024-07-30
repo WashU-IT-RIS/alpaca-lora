@@ -4,13 +4,13 @@ Generation for the most recent iteration of this question base was done using GP
 
 In general, GPT-4 was pointed to public resource pages via URL and asked to cannibalize them for a certain number of prompts. The prompt used for this task was as follows:
 
->    *Please produce a list of question-answer pairs that will be used in the training of a LORA for a LLM model. For each question-answer pair, format them in the following simple syntax:
+> *Please produce a list of question-answer pairs that will be used in the training of a LORA for a LLM model. For each question-answer pair, format them in the following simple syntax:*
 >
-> QUESTION
-> ANSWER
+> *QUESTION*
+> *ANSWER*
 >
-> Avoid making questions unnecessarily wordy. I will give resource pages to scan for these answers, as well as the number of unique questions to ask. Questions should be asked in first person, and answers should be phrased in third person. Do not number or format your responses beyond what I have given you. Do not put headers for each question-answer pair, simply the question, followed by corresponding the answer on the next line.
-> Do you understand these requirements?*
+> *Avoid making questions unnecessarily wordy. I will give resource pages to scan for these answers, as well as the number of unique questions to ask. Questions should be asked in first person, and answers should be phrased in third person. Do not number or format your responses beyond what I have given you. Do not put headers for each question-answer pair, simply the question, followed by corresponding the answer on the next line.*
+> *Do you understand these requirements? *
 
 After GPT-4 confirmed it understood the task it was given (thus additionally reducing the likelihood that the prompt itself was absorbed into the training set), it was fed a prompt of either the form
 
@@ -33,7 +33,7 @@ For this dataset, the output of both GPTs (we used ChatGPT and the in-house WUST
 If you use this method of data generation, special care should be taken to ensure that there are no extraneous newlines that may confuse the JSON parser you write.
 
 The example JSON parser we used is included as follows:
-``
+```
 import os
 import json
 
@@ -58,5 +58,4 @@ for i in range(0, len(qs) - 1, 2):
 outstring = json.dumps(out)
 write = open("questions.json", "w")
 write.write(outstring)
-write.close()
-``
+write.close()```
