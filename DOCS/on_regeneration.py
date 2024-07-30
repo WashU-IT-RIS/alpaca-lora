@@ -1,0 +1,11 @@
+# On Regeneration
+## Regeneration
+"Regeneration" is the term used for the automated generation of similar-phrased questions to *intentionally* overtrain our LLM to adhere to specific responses and avoid spontaneous generalization where possible. This is basically a way of ensuring certain questions are always matched with certain answers; for example, we want the questions "What is the General Queue", "Tell me about the General Queue", and "What can you tell me about the General Queue" to all map to the same response.
+
+To do this, we again outsource the manual labor to GPT. We can automate this through a variety of methods, although we have apparently lost track of our official OpenAI key, so we have to make do with WUSTLGPT. Included are two files, a "hacky" way of doing things, and a "correct" way of doing things.
+
+## The Hacky Way
+`ris-instruction-gen-wustlgpt.py` is a hacky method of regeneration, and was the primary form of regeneration used in this dataset. While waiting for official API access to WUSTLGPT, this method was created instead, which effectively spoofs browser headers to trick the server into thinking a standard chat window is being run. It requires a session token and conversation id, both of which can be obtained by opening a Chat instance with the WUSTL-GPT in a browser and stealing them from the outgoing requests in your developer console. You may then run the program, feeding it the command-line arguments of the input and output JSON files as the first and second argument, respectively. Once it begins running, it will prompt you for the two header values it needs, and then should be good to go.
+
+## The Correct Way
+`ris-regenerate-wustlgpt.py` is the "untested" method of regeneration, which uses the proper API to regenerate our data. Because this method was developed afterwards out of principle (of doing it "right") rather than necessity, it is largely untested. It has been wrapped in multiple try-catch blocks and error handling, but it has yet to actually run without crashing. It requires official API tokens to be obtained and set as environment variables through the `export` command before running. The environment variables that need to be set are `TOKEN_URL`, `GPT_SCOPE`, `CLIENT_ID`, and `CLIENT_SECRET`. Once done, simply run the program with the same command-line arguments as the "Hacky" method.

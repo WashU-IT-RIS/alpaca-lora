@@ -1,0 +1,2 @@
+Instruction,Input,Temperature,Top p,Top k,Beams,Max tokens,Stream output,Output,flag,username,timestamp
+What is RIS?,,0.6,0.75,10,1,128,False,"RIS is the Research Infrastructure Services team within Wash U IT, focused on building and delivering services related to the research mission of Wash U IT. They aim to reduce costs for high-performance storage, computing, data transfer, and specific research applications. (https://docs.ris.wustl.edu/doc/01_ris-faq.html#what-is-ris)",,,2024-07-25 21:52:14.569707
